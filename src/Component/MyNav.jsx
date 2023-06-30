@@ -1,14 +1,18 @@
+import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { BiSearchAlt2 } from "react-icons/bi";
+
 const MyNav = () =>{
+    const [VisibleSearch, setVisibleSearch] = useState(false);
     return(
-          <Navbar expand="lg" className="bg-ternary nav d-flex">
+          <Navbar expand="lg" className="nav d-flex">
       <Container fluid>
-        <Navbar.Brand href="#">Gestionale 2023-</Navbar.Brand>
+        <Navbar.Brand href="#">StreamThron</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -29,15 +33,24 @@ const MyNav = () =>{
             </NavDropdown>
            
           </Nav>
-          <Form className="d-flex">
+           {/* Ho creato un controllo sul sullo stato di visiblesearch, fa in modo che quando viene cliccato il pulsante cerca venga fuori il box per la ricerca */}
+          <BiSearchAlt2 className='text-light mx-4' onClick={()=>{
+            VisibleSearch?(setVisibleSearch(false)):setVisibleSearch(true);
+          }}>
+            
+          </BiSearchAlt2>
+     {
+        VisibleSearch ? (<Form className="d-flex">
             <Form.Control
               type="search"
               placeholder="Search"
               className="me-2"
               aria-label="Search"
+              
             />
-            <Button variant="outline-success">Search</Button>
-          </Form>
+          </Form>):null
+     }
+          
         </Navbar.Collapse>
       </Container>
     </Navbar>

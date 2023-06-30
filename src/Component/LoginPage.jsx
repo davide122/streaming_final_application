@@ -1,13 +1,23 @@
-import { useState } from "react";
-import { Link,Navigate   } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link,Navigate, useNavigate, useNavigation   } from "react-router-dom";
 
 
 const LoginPage = () =>{
-   
+   const navigation = useNavigate();
     const [username, setUserName] = useState("");
     const [password, setPassword] = useState("");
     const [responseText, setResponseText] = useState("");
     const[islogged, setislogged] = useState(false);
+
+
+useEffect(()=>{
+islogged&&navigation("/home")
+},[islogged])
+
+
+
+
+
     const handleUserNameChange = (event) => {
         setUserName(event.target.value);
       };
@@ -25,9 +35,7 @@ const LoginPage = () =>{
 
         };
         
-  if (islogged) {
-    
-  }
+
         try {
           const response = await fetch("http://localhost:8080/api/auth/signin", {
             method: "POST",
@@ -42,8 +50,9 @@ const LoginPage = () =>{
             console.log(data);
             setResponseText(data);
             setislogged(true);
-            return <Navigate to="/login" />;
-
+            
+localStorage.setItem("username", data.username);
+localStorage.setItem("token", data.accessToken);
           } else {
             console.log("Error occurred with the request");
             alert("Username or password wrong!");
@@ -63,22 +72,24 @@ const LoginPage = () =>{
 <div className="d-flex justify-content-center align-items-center flex-column ">
    
         <input
+        placeholder="Insert Username"
          type="text" 
          name=""
          value={username}
          onChange={handleUserNameChange}
          required
-         className=" Input rounded-3"/>
+         className=" Input "/>
 
         <input type="password"
+        placeholder="insert password"
         name=""
         value={password}
 onChange={handlePasswordChange}
 required
-         className="Input my-4 rounded-3"/>
+         className="Input my-4 "/>
 
   <button className="MyBtn text-light mt-3 mb-2 rounded-3" onClick={handleSubmit}>Accedi</button>
-  <p>Prima volta su Streamthron? <Link to={"/pagina"}></Link> </p>
+  <p>Prima volta su Streamthron? <Link to={"/register"}> Registrati</Link> </p>
 
 </div>
 </div>

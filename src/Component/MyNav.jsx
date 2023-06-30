@@ -12,7 +12,7 @@ const MyNav = () =>{
     return(
           <Navbar expand="lg" className="nav d-flex">
       <Container fluid>
-        <Navbar.Brand href="#">StreamThron</Navbar.Brand>
+        <Navbar.Brand href="#" className='text-light '>StreamThron</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -20,25 +20,16 @@ const MyNav = () =>{
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            <Nav.Link href="#action1">Home</Nav.Link>
-            <NavDropdown title="Filter" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">
-                Something else here
-              </NavDropdown.Item>
-            </NavDropdown>
-           
+            <Nav.Link href="#action1" className='text-light'>Home</Nav.Link>
           </Nav>
            {/* Ho creato un controllo sul sullo stato di visiblesearch, fa in modo che quando viene cliccato il pulsante cerca venga fuori il box per la ricerca */}
+        
           <BiSearchAlt2 className='text-light mx-4' onClick={()=>{
             VisibleSearch?(setVisibleSearch(false)):setVisibleSearch(true);
           }}>
             
           </BiSearchAlt2>
+          
      {
         VisibleSearch ? (<Form className="d-flex">
             <Form.Control
@@ -50,8 +41,14 @@ const MyNav = () =>{
             />
           </Form>):null
      }
-          
+              {/*Recupero dal localstorage il set item messo in precedenza in fase di login, recupero il nome utente*/}
+
+           {localStorage.getItem("username")&&<button className='text-light btn justify-content-center align-items-center'>{localStorage.getItem("username")}</button>}          
+
+   
+
         </Navbar.Collapse>
+        
       </Container>
     </Navbar>
          

@@ -75,7 +75,7 @@ const RegisterPage = () =>{
 
     return(
         <>
-<div className="d-flex justify-content-center align-items-center vh-100">
+<div className="d-flex justify-content-center align-items-center vh-100 ">
 <div className="container-login mx-2 text-light rounded-3">
 <h1 className="text-center my-3">Registrazione</h1>
 <div className="d-flex justify-content-center align-items-center flex-column ">

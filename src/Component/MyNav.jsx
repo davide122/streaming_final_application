@@ -11,7 +11,7 @@ const MyNav = () =>{
     const [VisibleSearch, setVisibleSearch] = useState(false);
     return(
           <Navbar expand="lg" className="nav d-flex">
-      <Container fluid>
+      <Container fluid className='mx-2'>
         <Navbar.Brand href="#" className='text-light '>StreamThron</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
@@ -43,7 +43,7 @@ const MyNav = () =>{
      }
               {/*Recupero dal localstorage il set item messo in precedenza in fase di login, recupero il nome utente*/}
 
-           {localStorage.getItem("username")&&<button className='text-light btn justify-content-center align-items-center'>{localStorage.getItem("username")}</button>}          
+           {localStorage.getItem("username")&&<button className='text-light btn justify-content-center align-items-center'>{localStorage.getItem("username").toLocaleUpperCase()}</button>}          
 
    
 

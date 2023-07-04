@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link,Navigate, useNavigate, useNavigation   } from "react-router-dom";
+import MyHomePage from "./MyHomePage";
+import { SetUser } from "../Store";
+import { useDispatch } from "react-redux";
 
 
 const LoginPage = () =>{
+  const Dispatch=useDispatch()
    const navigation = useNavigate();
     const [username, setUserName] = useState("");
     const [password, setPassword] = useState("");
@@ -12,6 +16,7 @@ const LoginPage = () =>{
 
 useEffect(()=>{
 islogged&&navigation("/home")
+
 },[islogged])
 
 
@@ -48,11 +53,13 @@ islogged&&navigation("/home")
           if (response.ok) {
             const data = await response.json();
             console.log(data);
+            Dispatch(SetUser(data))
             setResponseText(data);
-            setislogged(true);
+          
             
 localStorage.setItem("username", data.username);
 localStorage.setItem("token", data.accessToken);
+  setislogged(true);
           } else {
             console.log("Error occurred with the request");
             alert("Username or password wrong!");
@@ -66,6 +73,8 @@ localStorage.setItem("token", data.accessToken);
       };
 
     return(
+  
+ localStorage.getItem("token")?(<MyHomePage></MyHomePage>):(
 <div className="d-flex justify-content-center align-items-center vh-100">
 <div className="container-login mx-2 text-light rounded-3">
 <h1 className="text-center my-3">Accedi</h1>
@@ -94,6 +103,8 @@ required
 </div>
 </div>
 </div>
+
+ )
       
       
     )

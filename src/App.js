@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
 import RegisterPage from './Component/RegisterPage';
 import MyHomePage from './Component/MyHomePage';
 import { useState } from 'react';
+import PageNotFound from './Component/PageNotFound';
 
 
 
@@ -24,9 +25,10 @@ function App() {
 <Route path='/' element={<LoginPage></LoginPage>}></Route>
 
 
-<Route path="/home" element={localStorage.getItem("token")?<MyHomePage/>:<LoginPage/>}></Route>
+<Route path="/home" element={<MyHomePage></MyHomePage>}></Route>
 
 <Route path='/register' element={<RegisterPage></RegisterPage>}></Route>
+<Route path='*' element={<PageNotFound></PageNotFound>}></Route>
 </Routes>
 </BrowserRouter>
   );

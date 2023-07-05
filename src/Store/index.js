@@ -3,10 +3,9 @@ import { createSlice, configureStore } from '@reduxjs/toolkit'
 const userslice = createSlice({
   name: 'counter',
   initialState: {
-    name : "",
-    lastname:"",
-    token:"",
-    email:""
+   accessToken :"",
+   tokenType:"",
+   username:""
   },
   reducers: {
    

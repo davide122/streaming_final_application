@@ -1,5 +1,6 @@
 .nav{
-  background-color: rgb(0, 0, 0);
+  background-color: black !important;
+  
 
 
 }
@@ -41,8 +42,9 @@ font-size: 20px;
 
 .video-container {
   position: relative;
+  top: 0;
   width: 100%;
-  height: 80vh !important;
+  height: 90vh !important;
   
   
 }
@@ -58,12 +60,14 @@ font-size: 20px;
 }
 
 .Carousel{
-  margin-left: 20px;
+margin-left: 8px;
   position: relative;
-  top: -50px;
+  top: -70px;
   background-color: transparent !important;
   overflow-x:scroll !important;
-  
+  transition-duration: 0.5s;
+  scroll-behavior:smooth;
+  transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   height: 100%
 }
 .Carousel::-webkit-scrollbar {
@@ -81,11 +85,16 @@ font-size: 20px;
   width: 250px !important;
   height: 100% !important;
 }
+.carouselitem img:hover {
+ 
+}
 
 .iconsize{
- font-size: 80px !important;
+ font-size: 60px !important;
 }
 .carousel-button {
+  height: 18%;
+  
   position: absolute;
  z-index: 100;
   transform: translateY(-50%);
@@ -104,3 +113,7 @@ font-size: 20px;
   right: 0;
 }
 
+.carousel-button:hover{
+  background-color: rgba(0, 0, 0, 0.521);
+  border-radius: 10%;
+}

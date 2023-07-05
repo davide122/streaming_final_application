@@ -56,3 +56,51 @@ font-size: 20px;
   display: block;
 
 }
+
+.Carousel{
+  margin-left: 20px;
+  position: relative;
+  top: -50px;
+  background-color: transparent !important;
+  overflow-x:scroll !important;
+  
+  height: 100%
+}
+.Carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.carouselitem{
+  margin-right: 20px;
+  width: 250px !important;
+  height: 130px !important;
+
+}
+.carouselitem img {
+  border-radius: 7px 7px 7px;
+  width: 250px !important;
+  height: 100% !important;
+}
+
+.iconsize{
+ font-size: 80px !important;
+}
+.carousel-button {
+  position: absolute;
+ z-index: 100;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  opacity: 0.4;
+  color: #ffffff;
+}
+
+.carousel-button-left {
+  left: 0;
+}
+
+.carousel-button-right {
+  right: 0;
+}
+

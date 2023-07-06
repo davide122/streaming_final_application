@@ -10,6 +10,7 @@ import { BiSearchAlt2 } from "react-icons/bi";
 const MyNav = () =>{
     const [VisibleSearch, setVisibleSearch] = useState(false);
     return(
+      <>
           <Navbar expand="lg" className="nav d-flex">
       <Container fluid className='mx-2'>
         <Navbar.Brand href="#" className='text-light '>StreamThron</Navbar.Brand>
@@ -51,6 +52,8 @@ const MyNav = () =>{
         
       </Container>
     </Navbar>
+ 
+      </>
          
 
         

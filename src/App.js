@@ -8,6 +8,7 @@ import RegisterPage from './Component/RegisterPage';
 import MyHomePage from './Component/MyHomePage';
 import { useState } from 'react';
 import PageNotFound from './Component/PageNotFound';
+import FilmDetails from './Component/FilmDetails';
 
 
 
@@ -29,6 +30,7 @@ function App() {
 
 <Route path='/register' element={<RegisterPage></RegisterPage>}></Route>
 <Route path='*' element={<PageNotFound></PageNotFound>}></Route>
+<Route path='details/:id' element={<FilmDetails/>}></Route>
 </Routes>
 </BrowserRouter>
   );

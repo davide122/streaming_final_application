@@ -1,7 +1,8 @@
 .nav{
-  background-color: black !important;
-  
-
+  background-color: rgba(0, 0, 0, 0.253) !important;
+  position: sticky !important;
+top: 0;
+z-index: 1000;
 
 }
 .container-login{
@@ -41,7 +42,6 @@ font-size: 20px;
 }
 
 .video-container {
-  position: relative;
   top: 0;
   width: 100%;
   height: 90vh !important;
@@ -85,9 +85,7 @@ margin-left: 8px;
   width: 250px !important;
   height: 100% !important;
 }
-.carouselitem img:hover {
- 
-}
+
 
 .iconsize{
  font-size: 60px !important;
@@ -116,4 +114,13 @@ margin-left: 8px;
 .carousel-button:hover{
   background-color: rgba(0, 0, 0, 0.521);
   border-radius: 10%;
+}
+
+.in-page{
+
+}
+.textonvideo{
+  position: relative;
+  z-index: 1000;
+  color: white;
 }

@@ -1,28 +1,35 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 import { useSelector } from 'react-redux';
-import { getUserData } from '../Store';
+import { getUserData, setFilm } from '../Store';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { useDispatch } from "react-redux";
+import Spinner from 'react-bootstrap/Spinner';
+import IntersectionObserverComponent from './IntersectionObserverComponent';
 
 const MyCarousel = () => {
+    const Dispatch=useDispatch()
   const carouselRef = useRef(null);
   const user = useSelector(getUserData);
-const [allfilm, setallfilm] = useState();
-const [favourites, setfavourites] = useState();
+  const [allfilm, setAllfilm] = useState([]);
+  const [favourites, setFavourites] = useState([]);
+  const [selectedFilm, setSelectedFilm] = useState(null);
+  const [loading, setloading]= useState(false)
+  const navigation = useNavigate();
   const GetAllFilms = async () => {
     try {
       const response = await fetch("http://localhost:8080/api/film/all", {
         headers: {
           "Content-Type": "application/json",
-        
         },
       });
 
-    
-
-      if (response.ok ) {
+      if (response.ok) {
         const data = await response.json();
+        setloading(true);
         console.log(data);
-        setallfilm(response);
+        setAllfilm(data); // Assegna i dati a allfilm
+        Dispatch(setFilm(data));
       } else {
         console.log("Error occurred with the request");
         alert("An error occurred while fetching movies");
@@ -33,32 +40,28 @@ const [favourites, setfavourites] = useState();
     }
   };
 
-const GetAllFavourites = async () =>{
+  const GetAllFavourites = async () => {
     try {
-        const responsefavourites = await fetch("http://localhost:8080/api/film/favourites/all", {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `${localStorage.getItem("token")}`,
-          },
-        });
-  
-      
-  
-        if (responsefavourites.ok ) {
-          const data = await responsefavourites.json();
-          console.log(data);
-          setfavourites(responsefavourites);
-        } else {
-          console.log("Error occurred with the request");
-          alert("An error occurred while fetching movies");
-        }
-      } catch (error) {
-        console.log("Generic error occurred", error);
-        alert("An error occurred");
+      const responsefavourites = await fetch("http://localhost:8080/api/film/favourites/all", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `${localStorage.getItem("token")}`,
+        },
+      });
+
+      if (responsefavourites.ok) {
+        const data = await responsefavourites.json();
+        console.log(data);
+        setFavourites(data); // Assegna i dati a favourites
+      } else {
+        console.log("Error occurred with the request");
+        alert("An error occurred while fetching movies");
       }
-}
-
-
+    } catch (error) {
+      console.log("Generic error occurred", error);
+      alert("An error occurred");
+    }
+  };
 
   const handleScrollLeft = () => {
     carouselRef.current.scrollBy({
@@ -77,10 +80,16 @@ const GetAllFavourites = async () =>{
   useEffect(() => {
     GetAllFilms();
     GetAllFavourites();
-  },[] ); 
+  }, []);
 
+  const handleFilmClick = (film) => {
+    Dispatch(setFilm(film));
+    navigation(`/details/${film.id}`);
+    
+  };
   return (
-    <>
+    loading?(<div className='mb-5 watch'>
+   
       <button className="carousel-button carousel-button-left" onClick={handleScrollLeft}>
         <FaAngleLeft className="text-light iconsize" />
       </button>
@@ -88,10 +97,19 @@ const GetAllFavourites = async () =>{
         <FaAngleRight className="text-light iconsize" />
       </button>
       <div className="d-flex Carousel" ref={carouselRef}>
-       
-        {/* Aggiungi  elementi */}
+        {allfilm.map(movie => (
+          <div key={movie.id} className="carouselitem">
+            <img src={movie.poster_url} alt={"ciao"} width={100} onClick={()=>{handleFilmClick(movie)}} />
+            {/* Aggiungi altre informazioni del film se necessario */}
+          </div>
+        ))}
+        {/* Aggiungi elementi */}
+        <IntersectionObserverComponent targetClassName="watch" />
       </div>
-    </>
+    </div>):( <Spinner animation="border" role="status">
+      <span className="visually-hidden">Loading...</span>
+    </Spinner>)
+    
   );
 };
 

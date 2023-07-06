@@ -15,6 +15,10 @@ const MyHomePage = () =>{
        <MyHeroVideo>
         
        </MyHeroVideo>
+       
+       <MyCarousel></MyCarousel>
+       
+       <MyCarousel></MyCarousel>
        <MyCarousel></MyCarousel>
 </div>
  

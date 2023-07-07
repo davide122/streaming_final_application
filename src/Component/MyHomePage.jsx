@@ -1,8 +1,9 @@
 import { useSelector } from "react-redux";
-import MyHeroVideo from "./MyHeroVideo";
+
 import MyNav from "./MyNav"
 import { getUserData } from "../Store";
 import MyCarousel from "./MyCarousel";
+import MyHeroVideo from "./MyHeroVideo";
 
 const MyHomePage = () =>{
     const user = useSelector(getUserData)
@@ -12,14 +13,10 @@ const MyHomePage = () =>{
        <MyNav>
         
        </MyNav>
-       <MyHeroVideo>
-        
-       </MyHeroVideo>
-       
+
+       <MyHeroVideo></MyHeroVideo>
        <MyCarousel></MyCarousel>
-       
-       <MyCarousel></MyCarousel>
-       <MyCarousel></MyCarousel>
+
 </div>
  
 

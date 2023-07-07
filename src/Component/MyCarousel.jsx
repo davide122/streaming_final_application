@@ -8,6 +8,7 @@ import Spinner from 'react-bootstrap/Spinner';
 import IntersectionObserverComponent from './IntersectionObserverComponent';
 
 const MyCarousel = () => {
+  const [filter, setfilter] = useState([]);
     const Dispatch=useDispatch()
   const carouselRef = useRef(null);
   const user = useSelector(getUserData);
@@ -30,6 +31,18 @@ const MyCarousel = () => {
         console.log(data);
         setAllfilm(data); // Assegna i dati a allfilm
         Dispatch(setFilm(data));
+
+        const filmsByCategory = data.reduce((acc, film) => {
+          if (film.generi in acc) {
+            acc[film.generi].push(film);
+          } else {
+            acc[film.generi] = [film];
+          }
+          return acc;
+        }, {});
+        console.log("guarda qui ",filmsByCategory);
+setfilter(filmsByCategory);
+
       } else {
         console.log("Error occurred with the request");
         alert("An error occurred while fetching movies");
@@ -88,29 +101,37 @@ const MyCarousel = () => {
     
   };
   return (
-    loading?(<div className='mb-5 watch'>
-   
-      <button className="carousel-button carousel-button-left" onClick={handleScrollLeft}>
-        <FaAngleLeft className="text-light iconsize" />
-      </button>
-      <button className="carousel-button carousel-button-right" onClick={handleScrollRight}>
-        <FaAngleRight className="text-light iconsize" />
-      </button>
-      <div className="d-flex Carousel" ref={carouselRef}>
-        {allfilm.map(movie => (
-          <div key={movie.id} className="carouselitem">
-            <img src={movie.poster_url} alt={"ciao"} width={100} onClick={()=>{handleFilmClick(movie)}} />
-            {/* Aggiungi altre informazioni del film se necessario */}
+    loading ? (
+      <div className='mb-5'>
+        <button className="carousel-button carousel-button-left" onClick={handleScrollLeft}>
+          <FaAngleLeft className="text-light iconsize" />
+        </button>
+        <button className="carousel-button carousel-button-right" onClick={handleScrollRight}>
+          <FaAngleRight className="text-light iconsize" />
+        </button>
+        {Object.entries(filter).map(([category, films]) => (
+          <div key={category} className="d-flex Carousel" ref={carouselRef}>
+            {films?.map((film) => (
+              <div key={film.id} className="carouselitem">
+                <img
+                  src={film.poster_url}
+                  alt={film.title}
+                  width={100}
+                  onClick={() => handleFilmClick(film)}
+                />
+                {/* Aggiungi elementi */}
+            
+              </div>
+            ))}
           </div>
         ))}
-        {/* Aggiungi elementi */}
-        <IntersectionObserverComponent targetClassName="watch" />
       </div>
-    </div>):( <Spinner animation="border" role="status">
-      <span className="visually-hidden">Loading...</span>
-    </Spinner>)
-    
-  );
+    ) : (
+      <Spinner animation="border" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </Spinner>
+    )
+  )
 };
 
 export default MyCarousel;

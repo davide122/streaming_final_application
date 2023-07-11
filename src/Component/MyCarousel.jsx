@@ -8,6 +8,8 @@ import Spinner from 'react-bootstrap/Spinner';
 import IntersectionObserverComponent from './IntersectionObserverComponent';
 
 const MyCarousel = () => {
+  const carouselRefs = useRef([]);
+
   const [filter, setfilter] = useState([]);
     const Dispatch=useDispatch()
   const carouselRef = useRef(null);
@@ -76,18 +78,24 @@ setfilter(filmsByCategory);
     }
   };
 
-  const handleScrollLeft = () => {
-    carouselRef.current.scrollBy({
-      left: -500,
-      behavior: 'smooth',
-    });
+  const handleScrollLeft = (index) => {
+    const carouselElement = carouselRefs.current[index];
+    if (carouselElement) {
+      carouselElement.scrollBy({
+        left: -500,
+        behavior: 'smooth',
+      });
+    }
   };
 
-  const handleScrollRight = () => {
-    carouselRef.current.scrollBy({
-      left: 500,
-      behavior: 'smooth',
-    });
+  const handleScrollRight = (index) => {
+    const carouselElement = carouselRefs.current[index];
+    if (carouselElement) {
+      carouselElement.scrollBy({
+        left: 500,
+        behavior: 'smooth',
+      });
+    }
   };
 
   useEffect(() => {
@@ -101,16 +109,20 @@ setfilter(filmsByCategory);
     
   };
   return (
-    loading ? (
-      <div className='mb-5'>
-        <button className="carousel-button carousel-button-left" onClick={handleScrollLeft}>
-          <FaAngleLeft className="text-light iconsize" />
-        </button>
-        <button className="carousel-button carousel-button-right" onClick={handleScrollRight}>
-          <FaAngleRight className="text-light iconsize" />
-        </button>
-        {Object.entries(filter).map(([category, films]) => (
-          <div key={category} className="d-flex Carousel" ref={carouselRef}>
+    <>
+      {Object.entries(filter).map(([category, films],index) => (
+        <div key={category} className='mb-5 '>
+            <h4 className='titlecategory'>{category.charAt(0).toUpperCase()+ category.slice(1).toLowerCase()}</h4>
+      
+            <button className="carousel-button carousel-button-left" onClick={() => handleScrollLeft(index)}>
+              <FaAngleLeft className="text-light iconsize" />
+            </button>
+            
+            <button className="carousel-button carousel-button-right"  onClick={() => handleScrollRight(index)}>
+              <FaAngleRight className="text-light iconsize" />
+            </button>
+
+          <div className="d-flex Carousel" ref={(ref) => (carouselRefs.current[index] = ref)}>
             {films?.map((film) => (
               <div key={film.id} className="carouselitem">
                 <img
@@ -120,18 +132,15 @@ setfilter(filmsByCategory);
                   onClick={() => handleFilmClick(film)}
                 />
                 {/* Aggiungi elementi */}
-            
               </div>
             ))}
           </div>
-        ))}
-      </div>
-    ) : (
-      <Spinner animation="border" role="status">
-        <span className="visually-hidden">Loading...</span>
-      </Spinner>
-    )
-  )
+        </div>
+      ))}
+
+
+    </>
+  );
 };
 
 export default MyCarousel;

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Alert from 'react-bootstrap/Alert';
+import { Helmet } from "react-helmet";
 
 import { Link,Navigate   } from "react-router-dom";
 const RegisterPage = () =>{
@@ -77,6 +78,10 @@ const RegisterPage = () =>{
         <>
 <div className="d-flex justify-content-center align-items-center vh-100 ">
 <div className="container-login mx-2 text-light rounded-3">
+<Helmet>
+        <title>Registrazione</title>
+        <meta name="description" content="Pagina di registrazione" />
+      </Helmet>
 <h1 className="text-center my-3">Registrazione</h1>
 <div className="d-flex justify-content-center align-items-center flex-column ">
    

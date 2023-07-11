@@ -9,6 +9,8 @@ import MyHomePage from './Component/MyHomePage';
 import { useState } from 'react';
 import PageNotFound from './Component/PageNotFound';
 import FilmDetails from './Component/FilmDetails';
+import BackOffice from './Component/BackOffice';
+import Quiz from './Component/Quiz';
 
 
 
@@ -31,6 +33,8 @@ function App() {
 <Route path='/register' element={<RegisterPage></RegisterPage>}></Route>
 <Route path='*' element={<PageNotFound></PageNotFound>}></Route>
 <Route path='details/:id' element={<FilmDetails/>}></Route>
+<Route path='backoffice' element={<BackOffice></BackOffice>}></Route>
+<Route path='/quiz' element={<Quiz></Quiz>}></Route>
 </Routes>
 </BrowserRouter>
   );

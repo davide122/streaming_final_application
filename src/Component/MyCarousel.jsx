@@ -1,13 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 import { useSelector } from 'react-redux';
-import { getUserData, setFilm } from '../Store';
+import { getCategories, getUserData, setCategories, setFilm } from '../Store';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import Spinner from 'react-bootstrap/Spinner';
 import IntersectionObserverComponent from './IntersectionObserverComponent';
 
 const MyCarousel = () => {
+  
+
   const carouselRefs = useRef([]);
 
   const [filter, setfilter] = useState([]);
@@ -16,6 +18,7 @@ const MyCarousel = () => {
   const user = useSelector(getUserData);
   const [allfilm, setAllfilm] = useState([]);
   const [favourites, setFavourites] = useState([]);
+  console.log("favoriti",favourites);
   const [selectedFilm, setSelectedFilm] = useState(null);
   const [loading, setloading]= useState(false)
   const navigation = useNavigate();
@@ -44,6 +47,8 @@ const MyCarousel = () => {
         }, {});
         console.log("guarda qui ",filmsByCategory);
 setfilter(filmsByCategory);
+Dispatch(setCategories(filmsByCategory));
+
 
       } else {
         console.log("Error occurred with the request");
@@ -57,16 +62,16 @@ setfilter(filmsByCategory);
 
   const GetAllFavourites = async () => {
     try {
-      const responsefavourites = await fetch("http://localhost:8080/api/film/favourites/all", {
+      const responsefavourites = await fetch("http://localhost:8080/favorites/film/all", {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
 
       if (responsefavourites.ok) {
         const data = await responsefavourites.json();
-        console.log(data);
+        console.log(" ui",data);
         setFavourites(data); // Assegna i dati a favourites
       } else {
         console.log("Error occurred with the request");
@@ -101,7 +106,8 @@ setfilter(filmsByCategory);
   useEffect(() => {
     GetAllFilms();
     GetAllFavourites();
-  }, []);
+  
+  }, [],[favourites]);
 
   const handleFilmClick = (film) => {
     Dispatch(setFilm(film));
@@ -110,7 +116,10 @@ setfilter(filmsByCategory);
   };
   return (
     <>
+
+
       {Object.entries(filter).map(([category, films],index) => (
+          
         <div key={category} className='mb-5 '>
             <h4 className='titlecategory'>{category.charAt(0).toUpperCase()+ category.slice(1).toLowerCase()}</h4>
       
@@ -137,9 +146,31 @@ setfilter(filmsByCategory);
           </div>
         </div>
       ))}
+      <h4 className='titlecategory'>i tuoi preferiti</h4>
+      
+<div className="d-flex Carousel">
+  <button className="carousel-button carousel-button-left" onClick={() => handleScrollLeft()}>
+    <FaAngleLeft className="text-light iconsize" />
+  </button>
 
+  {favourites?.map((film) => (
+    <div key={film.id} className="carouselitem">
+      <img
+        src={film.movie.poster_url}
+        alt={film.movie.title}
+        width={100}
+        onClick={() => handleFilmClick(film.movie)}
+      />
+    </div>
+  ))}
+
+  <button className="carousel-button carousel-button-right" onClick={() => handleScrollRight()}>
+    <FaAngleRight className="text-light iconsize" />
+  </button>
+</div>
 
     </>
+    
   );
 };
 

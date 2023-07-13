@@ -29,7 +29,7 @@ const MyHeroVideo = () => {
 
   return (
     <div className="video-container">
-      <video src={`https://drive.google.com/uc?export=download&id=${trailerUrl}`} autoPlay muted loop poster={randomFilm?.poster_url}/>
+      <video src={`https://drive.google.com/uc?export=download&id=${trailerUrl}`}  autoPlay muted loop poster={randomFilm?.poster_url}/>
      
     </div>
   );

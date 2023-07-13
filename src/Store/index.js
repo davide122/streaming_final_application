@@ -30,9 +30,23 @@ const filmSlice = createSlice({
 export const { setFilm } = filmSlice.actions;
 export const getFilm = (state) => state.film;
 
+const categorySlice = createSlice({
+  name: 'category',
+  initialState: [],
+  reducers: {
+    setCategories: (state, action) => {
+      return action.payload;
+    }
+  }
+});
+
+export const { setCategories } = categorySlice.actions;
+export const getCategories = (state) => state.category;
+
 export const store = configureStore({
   reducer: {
     user: userslice.reducer,
-    film: filmSlice.reducer
+    film: filmSlice.reducer,
+    category: categorySlice.reducer
   }
 });

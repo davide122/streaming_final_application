@@ -22,6 +22,8 @@ const end = trailerLink.indexOf("/", start);
 const trailerId = trailerLink.slice(start, end);
     console.log(trailerId); 
 
+    
+
 
 
     const handlePlayVideo = () => {
@@ -40,11 +42,11 @@ const trailerId = trailerLink.slice(start, end);
     
         
         try {
-            const response = await fetch("http://localhost:8080/api/film/favourites/add", {
+            const response = await fetch(`http://localhost:8080/favorites/film/${filmDetails.id}` , {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
-                Authorization: `${localStorage.getItem("token")}`,
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
               },
               body: JSON.stringify(filmDetails),
             });
@@ -76,10 +78,15 @@ const trailerId = trailerLink.slice(start, end);
         <div className="col col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 justify-content-start align-items-center d-flex">
             <div className="w-100 ms-2 details">
                 <div className="png">
-                     <img src={filmDetails?.text_png_url} alt="" className="w-100" />
-                     
+                    {filmDetails.text_png_url?( <img src={filmDetails?.text_png_url} alt="" className="w-100" />):(<h1>{filmDetails?.title}</h1>)}
+                    
                 </div>
-                <h1 className="d-none">{filmDetails?.title}</h1>
+                
+                <div className="d-flex d-none">
+                <h1 className="d-flex">{filmDetails?.title}</h1>
+<button className="btn rounded-5 text-dark bg-light ms-3">{filmDetails?.rating}</button>
+                </div>
+
                 <p>{filmDetails?.anno}-{filmDetails?.durata} min</p>
                      <p className="">{filmDetails?.description?.slice(0,120)}...</p>
                 <button className="mybutton me-4 mb-2"> <FaPlay className="me-1"></FaPlay><strong>Riproduci</strong></button>

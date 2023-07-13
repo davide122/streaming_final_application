@@ -10,10 +10,8 @@ const MyHomePage = () =>{
     console.log(user)
     return(
 <div>
-       <MyNav>
-        
-       </MyNav>
-
+       
+<MyNav></MyNav>
        <MyHeroVideo></MyHeroVideo>
        <MyCarousel></MyCarousel>
 

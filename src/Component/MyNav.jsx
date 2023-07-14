@@ -24,6 +24,8 @@ const MyNav = () =>{
   const [searchQuery, setSearchQuery] = useState('');
   const [show, setShow] = useState(false);
   const [category, setCategory] = useState()
+
+
   console.log("controlla",category);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -43,10 +45,10 @@ const MyNav = () =>{
     
   };
 
-  const handleclickcategory = () =>{
+  const handleclickcategory = (category) =>{
   setCategory(category)
   console.log("Ricerca:", category)
-  navigation("/moviesfound")
+  navigation(`/moviesfound?category=${category}` )
   }
   
     return(
@@ -60,7 +62,7 @@ const MyNav = () =>{
         {Object.entries(categorie).map(([category, films],index) => (
           
           <div key={category} className='mb-2 mt-5'>
-              <h4 className='titlecategory' onClick={()=>{handleclickcategory()}}>{category.charAt(0).toUpperCase()+ category.slice(1).toLowerCase()}</h4>
+              <h4 className='titlecategory' onClick={()=>{handleclickcategory(category)}}>{category.charAt(0).toUpperCase()+ category.slice(1).toLowerCase()}</h4>
           </div>
         ))}
   

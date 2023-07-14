@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 import { useSelector } from 'react-redux';
-import { getCategories, getUserData, setCategories, setFilm } from '../Store';
+import { addToFavourites, getCategories, getUserData, setCategories, setFilm } from '../Store';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import Spinner from 'react-bootstrap/Spinner';
@@ -73,6 +73,7 @@ Dispatch(setCategories(filmsByCategory));
         const data = await responsefavourites.json();
         console.log(" ui",data);
         setFavourites(data); // Assegna i dati a favourites
+        Dispatch(addToFavourites(data));
       } else {
         console.log("Error occurred with the request");
         alert("An error occurred while fetching movies");
@@ -114,6 +115,16 @@ Dispatch(setCategories(filmsByCategory));
     navigation(`/details/${film.id}`);
     
   };
+
+
+  const handleFilmClickfavorite = (film)=>{
+    Dispatch(setFilm(film.movie));
+    const filmid = film.movie.id;
+  const favoriteId = film.id;
+  
+
+    navigation(`/details/${filmid}?favorite=true&favoriteId=${favoriteId}`);
+  }
   return (
     <>
 
@@ -146,7 +157,7 @@ Dispatch(setCategories(filmsByCategory));
           </div>
         </div>
       ))}
-      <h4 className='titlecategory'>i tuoi preferiti</h4>
+      {favourites.length > 1 && <><h4 className='titlecategory'>i tuoi preferiti</h4>
       
 <div className="d-flex Carousel">
   <button className="carousel-button carousel-button-left" onClick={() => handleScrollLeft()}>
@@ -159,7 +170,8 @@ Dispatch(setCategories(filmsByCategory));
         src={film.movie.poster_url}
         alt={film.movie.title}
         width={100}
-        onClick={() => handleFilmClick(film.movie)}
+        onClick={() =>  handleFilmClickfavorite(film)
+}
       />
     </div>
   ))}
@@ -168,7 +180,8 @@ Dispatch(setCategories(filmsByCategory));
     <FaAngleRight className="text-light iconsize" />
   </button>
 </div>
-
+ </>}
+      
     </>
     
   );

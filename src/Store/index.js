@@ -43,10 +43,31 @@ const categorySlice = createSlice({
 export const { setCategories } = categorySlice.actions;
 export const getCategories = (state) => state.category;
 
+// Nuova slice e reducer per i preferiti
+const favouritesSlice = createSlice({
+  name: 'favourites',
+  initialState: [],
+  reducers: {
+    setFavourites: (state, action) => {
+      return action.payload;
+    },
+    addToFavourites: (state, action) => {
+      state.push(action.payload);
+    },
+    removeFromFavourites: (state, action) => {
+      return state.filter((fav) => fav.id !== action.payload);
+    }
+  }
+});
+
+export const { setFavourites, addToFavourites, removeFromFavourites } = favouritesSlice.actions;
+export const getFavourites = (state) => state.favourites;
+
 export const store = configureStore({
   reducer: {
     user: userslice.reducer,
     film: filmSlice.reducer,
-    category: categorySlice.reducer
+    category: categorySlice.reducer,
+    favourites: favouritesSlice.reducer // Aggiungi il reducer dei preferiti allo store
   }
 });

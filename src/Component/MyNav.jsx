@@ -62,7 +62,7 @@ const MyNav = () =>{
         {Object.entries(categorie).map(([category, films],index) => (
           
           <div key={category} className='mb-2 mt-5'>
-              <h4 className='titlecategory' onClick={()=>{handleclickcategory(category)}}>{category.charAt(0).toUpperCase()+ category.slice(1).toLowerCase()}</h4>
+              <h4 className='text-light fs-2' onClick={()=>{handleclickcategory(category)}}>{category.charAt(0).toUpperCase()+ category.slice(1).toLowerCase()}</h4>
           </div>
         ))}
   
@@ -72,7 +72,7 @@ const MyNav = () =>{
 
 
           <Navbar expand="lg" className="nav d-flex">
-      <Container fluid className='mx-2'>
+      <Container fluid className='mx-5'>
         <Navbar.Brand href="#" className='text-light '>StreamThron</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">

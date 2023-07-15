@@ -1,6 +1,6 @@
 
 .nav{
-  background-color: rgba(0, 0, 0, 0.253) !important;
+  background-color: rgba(0, 0, 0, 0.044) !important;
   position: sticky !important;
 top: 0;
 z-index: 1000;
@@ -46,13 +46,13 @@ font-size: 20px;
 .video-container {
   top: 0;
   width: 100%;
-  height: 70vh !important;
+  height: 90vh !important;
   
   
 }
 .video-container video {
   position: relative;
-  top: 0;
+  top: -60px;
   left: 0;
   width: 100%;
   height: 100%;
@@ -60,17 +60,21 @@ font-size: 20px;
   display: block;
 
 }
-
+.img{
+  width: 100%;
+}
 .Carousel{
 margin-left: 20px;
   position: relative;
-  top: -70px;
+  top: -115px;
   background-color: transparent !important;
   overflow-x:scroll !important;
   transition-duration: 0.5s;
   scroll-behavior:smooth;
   transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  height: 100%
+  height: 100%;
+  
+  
 }
 .Carousel::-webkit-scrollbar {
   display: none;
@@ -106,7 +110,7 @@ margin-left: 20px;
 .carousel-button {
   position: absolute !important;
  z-index: 100;
-  transform: translateY(-46%);
+  transform: translateY(-120%);
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -157,7 +161,7 @@ margin-left: 20px;
   color: white;
   margin-left: 21px;
   position: relative;
-  top: -70px 
+  top: -110px 
 }
 .sovrapposizione{
   
@@ -210,6 +214,10 @@ align-items: center;
     
 
   }
+  
+.infovideohome img, p{
+display: none;
+}
 
   .carouselitem img {
     border-radius: 7px 7px 7px;
@@ -262,7 +270,8 @@ align-items: center;
   .FILTER{
     display: none;
 
-  }   
+  }
+  
   .png{
   display: none;
   }
@@ -317,6 +326,7 @@ align-items: center;
 }
 
 .playvideo {
+  text-align: center;
   position: absolute;
   z-index: 1000000;
  background-color: transparent !important;
@@ -348,4 +358,25 @@ opacity: 0;
 .pausevideo:hover {
   opacity: 1;
 
+}
+.realfilmvideo{
+  width: 100% !important;
+  height: 100% !important;
+}
+
+
+.infovideohome{
+left: 1%;
+  position: absolute !important;
+  bottom: 20%;
+  width: 33%;
+  transition: all 2s ease-in-out;
+
+}
+
+.scaled {
+left: 10%;
+bottom: 30%;
+  transform: scale(1.3);
+ 
 }

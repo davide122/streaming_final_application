@@ -1,9 +1,13 @@
 import { useSelector } from "react-redux";
 import { getFavourites, getFilm } from "../Store";
-import { useLocation, useParams } from "react-router-dom";
+import { Navigate, useLocation, useNavigate, useParams } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import { FaPlay, FaCircleInfo, FaPlus, FaPause } from "react-icons/fa";
 import Alert from 'react-bootstrap/Alert';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
+
+
 
 import MyNav from "./MyNav";
 
@@ -11,6 +15,8 @@ import { useRef, useState } from "react";
 import { FaMinus } from "react-icons/fa6";
 
 const FilmDetails = () => {
+  const [show, setShow] = useState(false);
+  const navigation = useNavigate();
   const filmDetails = useSelector(getFilm);
 const filmfavourite = useSelector(getFavourites)
   const [isVideoPlaying, setVideoPlaying] = useState(false);
@@ -24,6 +30,18 @@ const filmfavourite = useSelector(getFavourites)
   const favoriteid = new URLSearchParams(location.search).get("favoriteId")
 console.log("qyu dei guarda",filmfavourite);
   const handlePlayVideo = () => {
+
+    const currentTime = localStorage.getItem(filmDetails.id);
+
+    if (currentTime) {
+      const playbackTime = parseInt(currentTime, 10); // Converte il tempo di riproduzione in un numero intero
+      videoRef.current.currentTime = playbackTime;
+      videoRef.current.play();
+      console.log("ccccc",videoRef.currentTime===videoRef.duration)
+    } else if(!videoRef.currentTime >= videoRef.duration-50){
+      console.log(videoRef.currentTime>=videoRef.duration)
+      localStorage.removeItem(filmDetails.id);
+    }
     setVideoPlaying(true);
     videoRef.current.play();
   };
@@ -31,6 +49,9 @@ console.log("qyu dei guarda",filmfavourite);
   const handlePauseVideo = () => {
     setVideoPlaying(false);
     videoRef.current.pause();
+    const currentTime = videoRef.current.currentTime.toString();
+    localStorage.setItem(filmDetails.id, currentTime);
+    console.log("qui il tempo", currentTime);
   };
 
   const handleRemoveFromFavourites = () => {
@@ -44,8 +65,8 @@ console.log("qyu dei guarda",filmfavourite);
     })
       .then((response) => {
         if (response.ok) {
-          // Aggiorna lo stato o esegui altre azioni necessarie dopo la rimozione
           console.log("Film rimosso dai preferiti");
+          navigation("/home")
         } else {
           console.log("Errore durante la rimozione del film dai preferiti");
         }
@@ -53,7 +74,9 @@ console.log("qyu dei guarda",filmfavourite);
       .catch((error) => {
         console.log("Errore generico", error);
         alert("Si è verificato un errore durante la rimozione del film dai preferiti");
-      });
+      }
+      );
+   
   };
 
   const handleSubmit = async (event) => {
@@ -90,6 +113,7 @@ errore durante l'aggiunta
   return (
     <>
       <MyNav />
+      
       <div className="DetailsContainer">
         <div className="container-fluid">
           <div className="row textonvideo">
@@ -112,7 +136,7 @@ errore durante l'aggiunta
                   {filmDetails?.anno}-{filmDetails?.durata} min
                 </p>
                 <p className="">{filmDetails?.description?.slice(0, 120)}...</p>
-                <button className="mybutton me-4 mb-2">
+                <button className="mybutton me-4 mb-2" onClick={() => setShow(true)}>
                   <FaPlay className="me-1"></FaPlay>
                   <strong>Riproduci</strong>
                 </button>
@@ -149,6 +173,31 @@ errore durante l'aggiunta
         </div>
         <img src={filmDetails?.poster_url} alt="" className="modifyposter position-absolute top-0" />
       </div>
+      <>
+     
+
+      <Modal
+        show={show}
+        onHide={() => setShow(false)}
+        dialogClassName="modal-90w "
+        aria-labelledby="example-custom-modal-styling-title"
+        fullscreen
+        className="carousel-modal"
+      >
+      
+        <Modal.Body closeButton className="bg-black m-0 p-0">
+        <video
+                src={`https://drive.google.com/uc?export=download&id=${trailerId}`}
+                alt=""
+                poster={posterUrl}
+                className="w-100 h-100 FILTER"
+                ref={videoRef}
+                controls
+                
+              ></video>
+        </Modal.Body>
+      </Modal>
+    </>
     </>
   );
 };

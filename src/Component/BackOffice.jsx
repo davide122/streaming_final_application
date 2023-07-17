@@ -99,8 +99,10 @@ useEffect(()=>{
     const filmDataWithActors = {
       ...filmData,
       actors: actorsArray
-    };
 
+     
+    };
+setFilmData()
     try {
       const response = await fetch('http://localhost:8080/api/film', {
         method: 'POST',
@@ -129,7 +131,7 @@ useEffect(()=>{
     <div className='row'>
 <div className="col col-4">
 
-    <form onSubmit={handleSubmit} className="text-center">
+    <form onSubmit={handleSubmit} className="text-center border">
       <h1 className='text-light'>Aggiungi film</h1>
       <div className="my-3">
         
@@ -290,7 +292,7 @@ useEffect(()=>{
     </form>
 </div>
 <div className="col col-4">
-          <form onSubmit={handleRemove} className="container-login text-center">
+          <form onSubmit={handleRemove} className="container-login text-center border">
             <h1 className='text-light'>Elimina film</h1>
             <div className="mb-5">
               <label htmlFor="filmId" className="form-label">
@@ -299,7 +301,7 @@ useEffect(()=>{
               <select
                 id="filmId"
                 name="filmId"
-                className="Input"
+                className="Input bg-dark"
                 value={removeId}
                 onChange={(event) => setRemoveId(event.target.value)}
                 required

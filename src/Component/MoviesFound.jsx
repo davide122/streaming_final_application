@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { getCategories, setFilm } from "../Store";
 import { useLocation, useNavigate } from "react-router-dom";
+import MyNav from "./MyNav";
 
 const MoviesFound = () =>{
   const Dispatch=useDispatch()
@@ -12,6 +13,8 @@ const MoviesFound = () =>{
     console.log(category);
   
     return (
+      <>
+      <MyNav className="position-relative"></MyNav>
         <div className="container d-flex justify-content-center flex-column align-items-center">
           <h1 className="titlecategory top-0 mt-5">{category}</h1>
           <div className="row my-5">
@@ -22,6 +25,7 @@ const MoviesFound = () =>{
             ))}
           </div>
         </div>
+      </>
       );
     };
     

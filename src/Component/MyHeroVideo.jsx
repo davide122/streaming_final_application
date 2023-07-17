@@ -1,14 +1,25 @@
 import { useSelector } from 'react-redux';
 import { getFilm } from '../Store';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { GiSpeakerOff, GiSpeaker } from "react-icons/gi";
 
 
 const MyHeroVideo = () => {
+  const videoRef = useRef(null);
+const[iconplay,seticonplay]= useState(false);
+const [filmtimeout, setfilmtimeout] = useState(false);
+  const handleToggleAudio = () => {
+    videoRef.current.muted = !videoRef.current.muted;
+    iconplay?seticonplay(false):seticonplay(true);
+  };
+  
+  
+    const [randomFilm, setRandomFilm] = useState(null);
   const [isTextScaled, setTextScaled] = useState(false);
   useEffect(() => {
     const scaleTimeout = setTimeout(() => {
       setTextScaled(true);
-    }, 100); // Scala il testo dopo 10 secondi
+    }, 1); // Scala il testo dopo 10 secondi
 
     const restoreTimeout = setTimeout(() => {
       setTextScaled(false);
@@ -20,7 +31,22 @@ const MyHeroVideo = () => {
     };
   }, []);
 
-  const [randomFilm, setRandomFilm] = useState(null);
+  
+  useEffect(() => {
+    const scaleTimeout = setTimeout(() => {
+      setfilmtimeout(true);
+    }, 100); // Scala il testo dopo 10 secondi
+
+    const restoreTimeout = setTimeout(() => {
+      setfilmtimeout(false);
+    
+    }, 12000); // Ripristina il testo alla dimensione originale dopo 12 secondi
+
+    return () => {
+      clearTimeout(scaleTimeout);
+      clearTimeout(restoreTimeout);
+    };
+  }, [filmtimeout]);
   const [trailerUrl, setTrailerUrl] = useState('');
 
   const films = useSelector(getFilm);
@@ -46,7 +72,7 @@ const MyHeroVideo = () => {
 
   return (
     <div className="video-container">
-    <video src={`https://drive.google.com/uc?export=download&id=${trailerUrl}`} autoPlay muted loop poster={randomFilm?.poster_url} />
+    <video src={`https://drive.google.com/uc?export=download&id=${trailerUrl}`} autoPlay muted loop  poster={randomFilm?.poster_url} ref={videoRef}/>
     <div className={`infovideohome png d-flex flex-column text-light ${isTextScaled ? 'scaled' : ''}`}>
       <img src={randomFilm?.text_png_url} alt="" className="img-fluid" />
       <p>{randomFilm?.description}</p>
@@ -54,8 +80,12 @@ const MyHeroVideo = () => {
 
       </div>
     </div>
+    <div className='playaudio'>
+    {!iconplay ? <button onClick={handleToggleAudio} className='btn'><GiSpeaker></GiSpeaker></button> : <button onClick={handleToggleAudio} className='btn'>< GiSpeakerOff></GiSpeakerOff></button>}
+    </div>
+  
   </div>
-
+  
   );
 };
 

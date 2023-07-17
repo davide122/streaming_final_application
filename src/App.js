@@ -17,6 +17,7 @@ import MoviesFound from './Component/MoviesFound';
 
 
 
+
 function App() {
   const [islogged, setislogged]= useState(false);
   
@@ -42,6 +43,7 @@ function App() {
 <Route path='backoffice' element={<BackOffice></BackOffice>}></Route>
 <Route path='/quiz' element={<Quiz></Quiz>}></Route>
 <Route path="/moviesfound" element={<MoviesFound></MoviesFound>}></Route>
+
 </Routes>
 </BrowserRouter>
   );

@@ -50,6 +50,7 @@ setfilter(filmsByCategory);
 Dispatch(setCategories(filmsByCategory));
 
 
+
       } else {
         console.log("Error occurred with the request");
         alert("An error occurred while fetching movies");
@@ -125,6 +126,8 @@ Dispatch(setCategories(filmsByCategory));
 
     navigation(`/details/${filmid}?favorite=true&favoriteId=${favoriteId}`);
   }
+
+  
   return (
     <>
 
@@ -157,7 +160,7 @@ Dispatch(setCategories(filmsByCategory));
           </div>
         </div>
       ))}
-      {favourites.length > 1 && <><h4 className='titlecategory'>i tuoi preferiti</h4>
+      {favourites.length > 0 && <><h4 className='titlecategory'>i tuoi preferiti</h4>
       
 <div className="d-flex Carousel">
   <button className="carousel-button carousel-button-left" onClick={() => handleScrollLeft()}>

@@ -45,12 +45,16 @@ const[bytitle,setbytitle]=useState();
       if (firstFilm && firstFilm.id) {
         navigation(`/details/${firstFilm.id}`);
       } else {
-        console.error("L'oggetto firstFilm non ha una proprietà 'id'");
+<div class="alert alert-primary z" role="alert">
+  A simple primary alert—check it out!
+</div>
       }
 
       console.log(filteredFilms);
     } else {
-      console.log("Nessun film trovato");
+      <div class="alert alert-primary" role="alert">
+      A simple primary alert—check it out!
+    </div>
     }
   };
 

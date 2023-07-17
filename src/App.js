@@ -12,6 +12,7 @@ import FilmDetails from './Component/FilmDetails';
 import BackOffice from './Component/BackOffice';
 import Quiz from './Component/Quiz';
 import MoviesFound from './Component/MoviesFound';
+import Info from './Component/Infopage';
 
 
 
@@ -43,7 +44,7 @@ function App() {
 <Route path='backoffice' element={<BackOffice></BackOffice>}></Route>
 <Route path='/quiz' element={<Quiz></Quiz>}></Route>
 <Route path="/moviesfound" element={<MoviesFound></MoviesFound>}></Route>
-
+<Route path = "/info" element={<Info></Info>}></Route>
 </Routes>
 </BrowserRouter>
   );

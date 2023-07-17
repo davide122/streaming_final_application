@@ -99,7 +99,7 @@ required
 
   <button className="MyBtn text-light mt-3 mb-2 rounded-3" onClick={handleSubmit}>Accedi</button>
   <p>Prima volta su Streamthron? <Link to={"/register"}> Registrati</Link> </p>
-
+  <p>sapevi che su Streamthron puoi utilizzare l'intelligenza artificiale?<Link to={"/register"}> Registrati</Link> </p>
 </div>
 </div>
 </div>

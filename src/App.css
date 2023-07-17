@@ -23,6 +23,11 @@ body {
   background: rgb(0, 0, 0) !important;
 
 }
+.z{
+  position: relative !important;
+  top: 0 !important;
+  z-index: 100000000000000000000000000 !important;
+}
 .Input{
 width: 70%;
 height: 58px;
@@ -42,7 +47,10 @@ font-size: 20px;
   border: none;
   border-radius: 10px 10px 10px 10px;
 }
-
+canvas{
+  position: absolute !important;
+  left: -10000px !important;
+}
 .video-container {
   top: 0;
   width: 100%;

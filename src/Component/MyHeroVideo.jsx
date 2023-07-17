@@ -2,9 +2,12 @@ import { useSelector } from 'react-redux';
 import { getFilm } from '../Store';
 import { useEffect, useRef, useState } from 'react';
 import { GiSpeakerOff, GiSpeaker } from "react-icons/gi";
+import Spinner from 'react-bootstrap/Spinner';
 
 
 const MyHeroVideo = () => {
+  const [loading, setLoading] = useState(true);
+
   const videoRef = useRef(null);
 const[iconplay,seticonplay]= useState(false);
 const [filmtimeout, setfilmtimeout] = useState(false);
@@ -55,6 +58,7 @@ const [filmtimeout, setfilmtimeout] = useState(false);
     const randomIndex = Math.floor(Math.random() * films.length);
     const film = films[randomIndex];
     setRandomFilm(film);
+     setLoading(false);
 
     if (film && film.trailer_url) {
       const trailerLink = film.trailer_url;

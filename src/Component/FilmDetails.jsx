@@ -26,8 +26,19 @@ const FilmDetails = () => {
   const location = useLocation();
   const isFavourite = new URLSearchParams(location.search).get("favorite");
   const favoriteid = new URLSearchParams(location.search).get("favoriteId");
-
+  const [count, setCount] = useState(0);
   
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCount((prevCount) => prevCount + 1);
+    }, 3000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
   const handlePlayVideo = () => {
     const currentTime = localStorage.getItem(filmDetails.id);
     
@@ -45,14 +56,26 @@ const FilmDetails = () => {
     localStorage.setItem(filmDetails.id, videoRef.current.currentTime.toString());
   };
 
+
+  useEffect(() => {
+  let cosafa = localStorage.getItem("cosa fa?")
+  cosafa === "attiva"&& handleModalVideoPlay();
+  cosafa === "pausa" && handleModalVideoPause();
+ 
+  }, [count]);
+
+
   const handleModalVideoPause = () => {
-    modalVideoRef.current.pause();
-    localStorage.setItem(filmDetails.id, modalVideoRef.current.currentTime.toString());
+    if (modalVideoRef.current) {
+      modalVideoRef.current.pause();
+      localStorage.setItem(filmDetails.id, modalVideoRef.current.currentTime.toString());
+    }
   };
   
   const handleModalVideoPlay = () => {
-    const currentTime = localStorage.getItem(filmDetails.id);
     
+  const currentTime = localStorage?.getItem(filmDetails.id);
+    modalVideoRef.current.play();
     if (currentTime) {
       const playbackTime = parseInt(currentTime, 10);
       modalVideoRef.current.currentTime = playbackTime;
@@ -175,6 +198,7 @@ const FilmDetails = () => {
                   <FaPause />
                 </button>
               )}
+             
               <video
                 src={`https://drive.google.com/uc?export=download&id=${trailerId}`}
                 alt=""
@@ -203,6 +227,7 @@ const FilmDetails = () => {
         fullscreen
         className="carousel-modal"
       >
+        <h2 className="position-absolute top-0 textonvideo">{localStorage.getItem("cosa fa?")}</h2>
         <Modal.Body closeButton className="bg-black m-0 p-0">
           <video
             src={`https://drive.google.com/uc?export=download&id=${trailerId}`}
@@ -212,10 +237,12 @@ const FilmDetails = () => {
             ref={modalVideoRef}
             controls
             controlsList="nodownload"
+            
             onPlay={handleModalVideoPlay}
             onPause={handleModalVideoPause}
      
           >
+          
             <track kind="captions" />
             <source
               src={`https://drive.google.com/uc?export=download&id=${trailerId}`}

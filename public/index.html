@@ -15,6 +15,7 @@
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -102,18 +103,11 @@
     // The results are in an array ordered by confidence.
     // console.log(results[0]);
     label = results[0].label;
+    localStorage.setItem("cosa fa?", label)
     // Classifiy again!
     classifyVideo();
-    console.log(results);
-    if (results){
+  
     
-        if (results[1].confidence>=1){
-            console.log(result[0].confidence);
-        }else{
-          console.log("non cè");
-            
-        }
-    }
   }
 </script>
 

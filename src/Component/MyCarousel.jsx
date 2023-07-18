@@ -2,14 +2,16 @@ import React, { useEffect, useRef, useState } from 'react';
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 import { useSelector } from 'react-redux';
 import { addToFavourites, getCategories, getUserData, setCategories, setFilm } from '../Store';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import Spinner from 'react-bootstrap/Spinner';
 import IntersectionObserverComponent from './IntersectionObserverComponent';
-
+import freccia from "../image/freccia.gif"
 const MyCarousel = () => {
   
-
+  const location = useLocation();
+  const fristaccess = new URLSearchParams(location.search).get("fristaccess");
+fristaccess&&console.log("primo accesso!")
   const carouselRefs = useRef([]);
 
   const [filter, setfilter] = useState([]);
@@ -19,7 +21,7 @@ const MyCarousel = () => {
   const [allfilm, setAllfilm] = useState([]);
   const [favourites, setFavourites] = useState([]);
   console.log("favoriti",favourites);
-  const [selectedFilm, setSelectedFilm] = useState(null);
+
   const [loading, setloading]= useState(false)
   const navigation = useNavigate();
   const GetAllFilms = async () => {
@@ -113,7 +115,7 @@ Dispatch(setCategories(filmsByCategory));
 
   const handleFilmClick = (film) => {
     Dispatch(setFilm(film));
-    navigation(`/details/${film.id}`);
+    navigation(`/details/${film.id}${fristaccess&&"?fristaccess=true"}`);
     
   };
 
@@ -148,6 +150,7 @@ Dispatch(setCategories(filmsByCategory));
           <div className="d-flex Carousel" ref={(ref) => (carouselRefs.current[index] = ref)}>
             {films?.map((film) => (
               <div key={film.id} className="carouselitem">
+            {fristaccess&&<img src={freccia} className='rowfristaccess'></img>}
                 <img
                   src={film.poster_url}
                   alt={film.title}

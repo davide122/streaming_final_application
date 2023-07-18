@@ -7,7 +7,7 @@ import { FaPlay, FaCircleInfo, FaPlus, FaPause, FaMinus } from "react-icons/fa";
 import Alert from "react-bootstrap/Alert";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-
+import freccia from "../image/freccia.gif"
 import MyNav from "./MyNav";
 
 const FilmDetails = () => {
@@ -27,8 +27,10 @@ const FilmDetails = () => {
   const isFavourite = new URLSearchParams(location.search).get("favorite");
   const favoriteid = new URLSearchParams(location.search).get("favoriteId");
   const [count, setCount] = useState(0);
+  const fristaccess = new URLSearchParams(location.search).get("fristaccess");
+fristaccess&&console.log("primo accesso!")
   
-
+let cosafa = localStorage.getItem("cosa fa?")
   useEffect(() => {
     const interval = setInterval(() => {
       setCount((prevCount) => prevCount + 1);
@@ -73,8 +75,8 @@ const FilmDetails = () => {
   };
   
   const handleModalVideoPlay = () => {
-    
-  const currentTime = localStorage?.getItem(filmDetails.id);
+    const currentTime = localStorage?.getItem(filmDetails.id);
+    modalVideoRef.current&&
     modalVideoRef.current.play();
     if (currentTime) {
       const playbackTime = parseInt(currentTime, 10);
@@ -165,7 +167,9 @@ const FilmDetails = () => {
                   </button>
 
 </div>
+
                 <p className="">{filmDetails?.description}...</p>
+                {fristaccess&&<img src={freccia} className='rowfristaccessdetails'></img>}
                 <button className="mybutton me-4 mb-2" onClick={() => setShow(true)}>
                   <FaPlay className="me-1"></FaPlay>
                   <strong>Riproduci</strong>
@@ -227,7 +231,8 @@ const FilmDetails = () => {
         fullscreen
         className="carousel-modal"
       >
-        <h2 className="position-absolute top-0 textonvideo">{localStorage.getItem("cosa fa?")}</h2>
+{cosafa==="attiva"&&<h2 className="position-absolute top-0 textonvideo">👍</h2>}
+{cosafa==="pausa"&&<h2 className="position-absolute top-0 textonvideo">✋</h2>}
         <Modal.Body closeButton className="bg-black m-0 p-0">
           <video
             src={`https://drive.google.com/uc?export=download&id=${trailerId}`}

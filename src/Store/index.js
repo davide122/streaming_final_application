@@ -1,7 +1,7 @@
-import { createSlice, configureStore } from '@reduxjs/toolkit';
+import { configureStore, createSlice } from '@reduxjs/toolkit';
 
-const userslice = createSlice({
-  name: 'counter',
+const userSlice = createSlice({
+  name: 'user',
   initialState: {
     accessToken: '',
     tokenType: '',
@@ -14,7 +14,7 @@ const userslice = createSlice({
   }
 });
 
-export const { SetUser } = userslice.actions;
+export const { SetUser } = userSlice.actions;
 export const getUserData = (state) => state.user;
 
 const filmSlice = createSlice({
@@ -43,7 +43,19 @@ const categorySlice = createSlice({
 export const { setCategories } = categorySlice.actions;
 export const getCategories = (state) => state.category;
 
-// Nuova slice e reducer per i preferiti
+const adminSlice = createSlice({
+  name: 'admin',
+  initialState: false,
+  reducers: {
+    setIsAdmin: (state, action) => {
+      return action.payload;
+    }
+  }
+});
+
+export const { setIsAdmin } = adminSlice.actions;
+export const getIsAdmin = (state) => state.admin;
+
 const favouritesSlice = createSlice({
   name: 'favourites',
   initialState: [],
@@ -65,9 +77,10 @@ export const getFavourites = (state) => state.favourites;
 
 export const store = configureStore({
   reducer: {
-    user: userslice.reducer,
+    user: userSlice.reducer,
     film: filmSlice.reducer,
     category: categorySlice.reducer,
-    favourites: favouritesSlice.reducer // Aggiungi il reducer dei preferiti allo store
+    admin: adminSlice.reducer,
+    favourites: favouritesSlice.reducer
   }
 });

@@ -3,10 +3,10 @@ import { useSelector } from 'react-redux';
 import { getFilm } from '../Store';
 
 function AddToFavoritesForm() {
-
+ // Stato per memorizzare l'ID del film da rimuovere
   const [removeId, setRemoveId] = useState('');
 
-  
+    // Funzione per gestire la selezione del film da rimuovere
   const handleChangeremove = (event) => {
     const { name, value } = event.target;
     setFilmData((prevData) => ({
@@ -20,7 +20,7 @@ function AddToFavoritesForm() {
     event.preventDefault();
 
     const selectedFilmId = event.target.value;
-  
+  // Effettua la richiesta DELETE all'API per rimuovere il film con l'ID specificato
     try {
       const response = await fetch(`http://localhost:8080/api/film/${removeId}`, {
         method: 'DELETE',
@@ -42,7 +42,7 @@ function AddToFavoritesForm() {
       console.log('Errore durante l\'invio della richiesta', error);
     }
   };
-  
+   // Funzione per ottenere tutti i film dalla API
   const GetAllFilms = async () => {
     try {
       const response = await fetch("http://localhost:8080/api/film/all", {
@@ -65,6 +65,7 @@ function AddToFavoritesForm() {
   };
   const[film,setfilm]=useState([]);
 
+ // Stato per memorizzare i dati del film da aggiungere
   console.log(film);
   const [filmData, setFilmData] = useState({
     description: '',
@@ -78,7 +79,7 @@ function AddToFavoritesForm() {
     trailer_url: '',
     text_png_url: ''
   });
-
+// Funzione per gestire il cambiamento dei campi del form
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFilmData((prevData) => ({
@@ -89,7 +90,9 @@ function AddToFavoritesForm() {
 useEffect(()=>{
   GetAllFilms();
 },[])
+
   const handleSubmit = async (event) => {
+     // Effettua la richiesta POST all'API per aggiungere il film
     event.preventDefault();
 
     // Converto la stringa degli attori in un array
@@ -138,7 +141,7 @@ setFilmData()
         <textarea
           id="description"
           name="description"
-          value={filmData.description}
+          value={filmData?.description}
           onChange={handleChange}
           className="Input"
           placeholder='inserisci descrizione'
@@ -151,7 +154,7 @@ setFilmData()
           type="text"
           id="title"
           name="title"
-          value={filmData.title}
+          value={filmData?.title}
           onChange={handleChange}
           className="Input"
           placeholder='inserisci titolo'
@@ -165,7 +168,7 @@ setFilmData()
           type="number"
           id="anno"
           name="anno"
-          value={filmData.anno}
+          value={filmData?.anno}
           onChange={handleChange}
           className="Input"
           placeholder='inserisci anno es: 1999'
@@ -177,7 +180,7 @@ setFilmData()
         <select
           id="generi"
           name="generi"
-          value={filmData.generi}
+          value={filmData?.generi}
           onChange={handleChange}
           className="Input bg-dark"
           required
@@ -194,14 +197,14 @@ setFilmData()
           <option value="THRILLER">Thriller</option>
         </select>
       </div>
-      <span className='text-light'>inserisci durata in minuti es: {filmData.durata} min</span>
+      <span className='text-light'>inserisci durata in minuti es: {filmData?.durata} min</span>
       <div className="">
       
         <input
           type="range"
           id="durata"
           name="durata"
-          value={filmData.durata}
+          value={filmData?.durata}
           onChange={handleChange}
           className="Input"
           min="0"
@@ -220,7 +223,7 @@ setFilmData()
         
           id="rating"
           name="rating"
-          value={filmData.rating}
+          value={filmData?.rating}
           onChange={handleChange}
           className="Input"
           placeholder='inserisci rating es: 8.9'
@@ -234,7 +237,7 @@ setFilmData()
           type="text"
           id="actors"
           name="actors"
-          value={filmData.actors}
+          value={filmData?.actors}
           onChange={handleChange}
           className="Input"
           placeholder='inserisci attori separati da virgola ","'
@@ -248,7 +251,7 @@ setFilmData()
           type="text"
           id="poster_url"
           name="poster_url"
-          value={filmData.poster_url}
+          value={filmData?.poster_url}
           onChange={handleChange}
           className="Input"
           placeholder='inserisci url del poster'
@@ -262,7 +265,7 @@ setFilmData()
           type="text"
           id="trailer_url"
           name="trailer_url"
-          value={filmData.trailer_url}
+          value={filmData?.trailer_url}
           onChange={handleChange}
           className="Input"
           placeholder='inserisci url del trailer'
@@ -276,7 +279,7 @@ setFilmData()
           type="text"
           id="text_png_url"
           name="text_png_url"
-          value={filmData.text_png_url}
+          value={filmData?.text_png_url}
           onChange={handleChange}
           className="Input"
           placeholder='inserisci url del png titolo'

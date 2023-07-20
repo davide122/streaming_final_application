@@ -1,17 +1,32 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { getFilm } from "../Store";
+import { useDispatch, useSelector } from "react-redux";
+import { getFilm, setFilm } from "../Store";
 import MyNav from "./MyNav";
+import { useNavigate } from "react-router-dom";
 
 const Quiz = () => {
   const [risposte, setRisposte] = useState([]);
   const [risultato, setRisultato] = useState("");
   const [filtrato, setFiltrato] = useState([]);
+  const [page,setpage]=useState(1);
   const film = useSelector(getFilm);
+  const Dispatch=useDispatch()
+  const navigation = useNavigate();
 
-  const aggiungiRisposta = (risposta, punti) => {
+  const aggiungiRisposta = (risposta, punti,page) => {
     setRisposte([...risposte, { risposta, punti }]);
+    setpage(page => page + 1);
   };
+
+
+  const handleclick = (film) =>{
+    Dispatch(setFilm(film));
+    const filmid = film.id;
+
+  
+
+    navigation(`/details/${filmid}`);
+  }
 
   const calcolaRisultato = () => {
     let puntiCommedia = 0;
@@ -197,7 +212,7 @@ const Quiz = () => {
 
     setRisultato(risultato);
 
-    const filmFiltrati = film.filter((film) => {
+    const filmFiltrati = film.length>0 && film.filter((film) => {
       let risultatoFiltraggio = true;
 
       risposte.forEach((risposta) => {
@@ -225,12 +240,12 @@ const Quiz = () => {
           risultatoFiltraggio = false;
         } else if (
           categoria === "classici" &&
-          film.anno >= 2000
+          film.anno >= 2010
         ) {
           risultatoFiltraggio = false;
         } else if (
           categoria === "recenti" &&
-          film.anno < 2000
+          film.anno < 2010
         ) {
           risultatoFiltraggio = false;
         } else if (
@@ -274,29 +289,37 @@ const Quiz = () => {
 
   return (
     <>  <MyNav></MyNav>
-    <div className="d-flex justify-content-center align-items-center flex-column text-center text-light">
-      <h1>Quiz sui film</h1>
+    <div className="d-flex justify-content-center align-items-center flex-column text-center text-light h-100 my-5">
+
 
       {risultato ? (
         <div className="container-fluid">
-          <h2>Risultato: {risultato}</h2>
           <h3>Film corrispondenti:</h3>
           <div className="row">
-            {filtrato.map((film) => (
-              <div key={film.id} className="col-md-6">
-                <div className="film-item">
-                  <img src={film.poster_url} alt={film.title} className="img" />
-                  <h4>{film.title}</h4>
-                  <p>{film.description}</p>
+          {filtrato.length>0 && filtrato.map((film) => (
+            <>
+
+              <div key={film.id} className="col-md-6 ">
+                <div className="film-item ">
+                  <h2>{film.title}</h2>
+                  <img src={film.poster_url} alt={film.title} className="img" onClick={()=>{handleclick(film)}}/>
+                 
                 </div>
               </div>
+            </>
             ))}
           </div>
         </div>
       ) : (
         <div>
-          <div className="my-2">
+
+
+
+
+          {page === 1 &&   <div className=" ">
+          <h1>Quiz sui film</h1>
             <h2>Che tipo di film ti piacciono?</h2>
+            <div className="">
             <button className="mybutton mx-2 my-2" onClick={() => aggiungiRisposta("commedia", 1)}>
               Commedia
             </button>
@@ -321,9 +344,15 @@ const Quiz = () => {
             <button className="mybutton mx-2 my-2" onClick={() => aggiungiRisposta("adventure", 1)}>
               Adventure
             </button>
-          </div>
-          <hr />
-          <div className="my-2">
+
+            </div>
+          </div>}
+        
+
+
+
+
+      {page === 2 &&   <div className="my-2">
             <h2>Preferisci film recenti o classici?</h2>
             <button className="mybutton mx-2 my-2" onClick={() => aggiungiRisposta("recenti", 1)}>
               Recenti
@@ -331,9 +360,9 @@ const Quiz = () => {
             <button className="mybutton mx-2 my-2" onClick={() => aggiungiRisposta("classici", 1)}>
               Classici
             </button>
-          </div>
-          <hr />
-          <div>
+          </div>}
+        
+         {page === 3 &&    <div>
             <h2>Ti piacciono i film con durata più lunga o corta?</h2>
             <button className="mybutton mx-2 my-2" onClick={() => aggiungiRisposta("lunghi", 1)}>
               Lunghi
@@ -341,11 +370,11 @@ const Quiz = () => {
             <button className="mybutton mx-2 my-2" onClick={() => aggiungiRisposta("corti", 1)}>
               Corti
             </button>
-          </div>
-
-          <button className="mybutton mx-2 my-2" onClick={calcolaRisultato}>
+          </div>}
+       
+{page === 4 &&  <button className="mybutton mx-2 my-2" onClick={calcolaRisultato}>
             Mostra risultato
-          </button>
+          </button>}
         </div>
       )}
     </div></>

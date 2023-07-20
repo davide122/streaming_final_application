@@ -12,6 +12,7 @@ const LoginPage = () =>{
     const [password, setPassword] = useState("");
     const [responseText, setResponseText] = useState("");
     const[islogged, setislogged] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
 
 
 useEffect(()=>{
@@ -79,7 +80,7 @@ localStorage.setItem("token", data.accessToken);
 <div className="container-login mx-2 text-light rounded-3">
 <h1 className="text-center my-3">Accedi</h1>
 <div className="d-flex justify-content-center align-items-center flex-column ">
-   
+   <form onSubmit={handleSubmit}></form>
         <input
         placeholder="Insert Username"
          type="text" 
@@ -88,18 +89,28 @@ localStorage.setItem("token", data.accessToken);
          onChange={handleUserNameChange}
          required
          className=" Input "/>
-
-        <input type="password"
+<div>
+  
+</div>
+        <input type={showPassword ? 'text' : 'password'}
         placeholder="insert password"
         name=""
         value={password}
 onChange={handlePasswordChange}
+
 required
          className="Input my-4 "/>
-
+           <label>
+              <input
+                type="checkbox"
+                checked={showPassword}
+                onChange={() => setShowPassword(!showPassword)}
+              />{" "}
+              Show Password
+            </label>
   <button className="MyBtn text-light mt-3 mb-2 rounded-3" onClick={handleSubmit}>Accedi</button>
-  <p>Prima volta su Streamthron? <Link to={"/register"}> Registrati</Link> </p>
-  <p>sapevi che su Streamthron puoi utilizzare l'intelligenza artificiale?<Link to={"/register"}> Registrati</Link> </p>
+  <span>Prima volta su Streamthron? <Link to={"/register"}> Registrati</Link> </span>
+  <p>sapevi che su Streamthron puoi utilizzare l'intelligenza artificiale?<Link to={"/info"} className="text-warning"> info</Link> </p>
 </div>
 </div>
 </div>

@@ -2,8 +2,9 @@ import { useState } from "react";
 import Alert from 'react-bootstrap/Alert';
 import { Helmet } from "react-helmet";
 
-import { Link,Navigate   } from "react-router-dom";
+import { Link,Navigate, useNavigate   } from "react-router-dom";
 const RegisterPage = () =>{
+  const navigation = useNavigate();
     const [name, setName] = useState("");
     const [lastName, setLastName] = useState("");
   
@@ -11,6 +12,7 @@ const RegisterPage = () =>{
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [registrationCompleted, setRegistrationCompleted] = useState(false); 
+    const [showPassword, setShowPassword] = useState(false);
     const handleNameChange = (event) => {
         setName(event.target.value);
       };
@@ -40,6 +42,7 @@ const RegisterPage = () =>{
             email: email,
             password: password,
           };
+          navigation("/")
       
         try {
           const response = await fetch("http://localhost:8080/api/auth/signup", {
@@ -60,7 +63,7 @@ const RegisterPage = () =>{
             setUserName("");
             setLastName("");
             setRegistrationCompleted(true);
-            
+       
        
           } else {
             console.log("Error occurred with the request");
@@ -135,7 +138,7 @@ const RegisterPage = () =>{
             
           
               <input
-                type="password"
+                type={showPassword ? 'text' : 'password'}
                 name=""
                 value={password}
                 onChange={handlePasswordChange}
@@ -143,15 +146,23 @@ const RegisterPage = () =>{
                 className="Input "
                 placeholder="Insert password"
               />
-              
+                     <label>
+              <input
+                type="checkbox"
+                checked={showPassword}
+                onChange={() => setShowPassword(!showPassword)}
+              />{" "}
+              Show Password
+            </label>
 
   <button className="MyBtn text-light mt-3 mb-2 rounded-3" onClick={handleSubmit}>Registrati</button>
   <p>già registrato? 
     
+    
     <Link to={"/"}> accedi</Link>
     
      </p>
-
+     <p>sapevi che su Streamthron puoi utilizzare l'intelligenza artificiale?<Link to={"/info"} className="text-warning"> info</Link> </p>
 </div>
 </div>
 </div>

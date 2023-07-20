@@ -1,6 +1,8 @@
 import React from 'react';
 
+
 class ErrorBoundary extends React.Component {
+  
     constructor(props) {
       super(props);
       this.state = { hasError: false };
@@ -12,8 +14,10 @@ class ErrorBoundary extends React.Component {
     }
   
     render() {
+      
       if (this.state.hasError) {
         // Mostra il messaggio di errore
+     
         return <div><h2>Si è verificato un errore generico. Riprova o contatta l'assistenza.</h2></div>;
       }
       // Altrimenti, rendi i componenti figli normalmente

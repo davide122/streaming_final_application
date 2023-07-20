@@ -13,6 +13,8 @@ import BackOffice from './Component/BackOffice';
 import Quiz from './Component/Quiz';
 import MoviesFound from './Component/MoviesFound';
 import Info from './Component/Infopage';
+import { getIsAdmin } from './Store';
+import { useSelector } from 'react-redux';
 
 
 
@@ -21,7 +23,7 @@ import Info from './Component/Infopage';
 
 function App() {
   const [islogged, setislogged]= useState(false);
-  
+  const isAdmin = useSelector(getIsAdmin);
   // Funzione per impostare lo stato del login
  
 
@@ -41,7 +43,8 @@ function App() {
 <Route path='/register' element={<RegisterPage></RegisterPage>}></Route>
 <Route path='*' element={<PageNotFound></PageNotFound>}></Route>
 <Route path='details/:id' element={<FilmDetails/>}></Route>
-<Route path='backoffice' element={<BackOffice></BackOffice>}></Route>
+ {isAdmin&&<Route path='backoffice' element={<BackOffice></BackOffice>}></Route>} 
+
 <Route path='/quiz' element={<Quiz></Quiz>}></Route>
 <Route path="/moviesfound" element={<MoviesFound></MoviesFound>}></Route>
 <Route path = "/info" element={<Info></Info>}></Route>

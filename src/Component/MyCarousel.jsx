@@ -78,8 +78,8 @@ Dispatch(setCategories(filmsByCategory));
         setFavourites(data); // Assegna i dati a favourites
         Dispatch(addToFavourites(data));
       } else {
-        console.log("Error occurred with the request");
-        alert("An error occurred while fetching movies");
+        console.log("Error films not found");
+       
       }
     } catch (error) {
       console.log("Generic error occurred", error);
@@ -115,7 +115,7 @@ Dispatch(setCategories(filmsByCategory));
 
   const handleFilmClick = (film) => {
     Dispatch(setFilm(film));
-    navigation(`/details/${film.id}${fristaccess&&"?fristaccess=true"}`);
+    navigation(`/details/${film.id}${fristaccess&&"?fristaccess=true"}?dettagli=true`);
     
   };
 

@@ -22,7 +22,7 @@ const Info = () => {
       setCount((prevCount) => prevCount + 1);
       let cosafa = localStorage.getItem("cosa fa?");
       cosafa === "pausa" && handlepause();
-      cosafa === "attiva" && handleattiva();
+      cosafa === "play" && handleattiva();
     }, 5000);
 
     return () => {
@@ -51,11 +51,7 @@ setattiva(true);
               <h1 className="text-center my-3">
                Ciao, sai che in Streamthron puoi gestire i tuoi film con dei semplici gesti? provalo!
               </h1>
-              <div className="">
-                <p>
-                Abbiamo anche una demo interattiva che ti guiderà passo dopo passo nell'utilizzo delle gesture. Dopo aver letto le informazioni, ti invitiamo a fare clic sul pulsante "Demo" per sperimentare di persona come è semplice e coinvolgente il controllo dei film con le tue mani.
-                </p>
-              </div>
+              
             </div>
             <button className="text-center  mybutton p-2" onClick={() => setPage(2)}>
            Demo
@@ -67,13 +63,6 @@ setattiva(true);
 
       {page === 2 && (
         <div className="text-light d-flex justify-content-center flex-column align-items-center text-center">
-        {localStorage.getItem("cosa fa?") === "pausa" && 
-        <Alert variant="success" onClose={() => setShow()} dismissible className="w-100">
-    <Alert.Heading>Fermo qualche secondo.</Alert.Heading>
-    <p>
-      sto verificando la forma, attendi qualche secondo.
-    </p>
-  </Alert>}
           <h1>
             Proviamo insieme, assicurati di accendere la tua fotocamera ed abilitarla! attenzione: la tua mano deve essere
             ben visibile dalla fotocamera, a circa 1 metro dal dispositivo.
@@ -84,8 +73,8 @@ setattiva(true);
 
             {pausa && (
               <>
-                <h1>Bravo, hai capito come funziona, andiamo avanti!</h1>
-                <button className="mybutton w-100"onClick={() => setPage(3)}>Clicca qui per provare la funzione attiva film</button>
+                <h3 className="text-success">Bravo, hai capito come funziona, andiamo avanti!</h3>
+                <button className="mybutton bg-success w-100"onClick={() => setPage(3)}>Clicca qui per provare la funzione attiva film</button>
               </>
             )}
           </div>
@@ -94,13 +83,7 @@ setattiva(true);
 
 {page === 3 && (
     <div className="text-light d-flex justify-content-center flex-column align-items-center text-center">
-           {localStorage.getItem("cosa fa?") === "attiva" && 
-        <Alert variant="success" onClose={() => setShow()} dismissible className="w-100 my-2">
-    <Alert.Heading>Fermo qualche secondo.</Alert.Heading>
-    <p>
-      sto verificando la forma, attendi qualche secondo.
-    </p>
-  </Alert>}
+
     <h1>
       attenzione: la tua mano deve essere
       ben visibile dalla fotocamera, a circa 1 metro dal dispositivo.
@@ -112,7 +95,7 @@ setattiva(true);
       {attiva && (
         <>
           <h1>Bravo, hai capito come funziona, andiamo avanti!</h1>
-          <button className="mybutton w-100" onClick={() => navigation("/home?fristaccess=true")}>Clicca qui per  la funzione attiva film</button>
+          <button className="mybutton w-100 bg-success" onClick={() => navigation("/home?fristaccess=true")}>Clicca qui per provare un film </button>
         </>
       )}
     </div>

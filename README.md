@@ -1,5 +1,5 @@
 <H1 align="center">
-  STREAMTHRON
+  <font color="red">Streamthron</font>
 </H1>
 
 <p align="center">

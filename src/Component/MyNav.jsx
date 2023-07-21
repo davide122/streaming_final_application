@@ -121,7 +121,7 @@ admin()
       </Offcanvas>
 
       <Navbar expand="lg" className="nav d-flex">
-        <Container fluid className="mx-1">
+        <Container fluid className="mx-5">
           <Navbar.Brand href="" className="text-light "onClick={() => {
                 navigation("/home");
               }}>

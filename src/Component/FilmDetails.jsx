@@ -10,6 +10,7 @@ import Button from "react-bootstrap/Button";
 import freccia from "../image/freccia.gif";
 import MyNav from "./MyNav";
 import Closedemo from "./closedemo";
+import OneCarousel from "./OneCarousel";
 
 const FilmDetails = () => {
   const modalVideoRef = useRef(null);
@@ -29,7 +30,7 @@ const FilmDetails = () => {
   const favoriteid = new URLSearchParams(location.search).get("favoriteId");
   const [count, setCount] = useState(0);
   const fristaccess = new URLSearchParams(location.search).get("fristaccess");
-  const actorsString = filmDetails?.actors.join(", ");
+  const actorsString = filmDetails?.actors?.join(", ");
   fristaccess && console.log("primo accesso!");
 
   let cosafa = localStorage.getItem("cosa fa?");
@@ -132,7 +133,7 @@ const FilmDetails = () => {
       });
 
       if (response.ok) {
-        <Alert variant="success">Aggiunto correttamente alla tua lista dei preferiti.</Alert>;
+        <Alert show variant="success" className="position-absolute top-0">Aggiunto correttamente alla tua lista dei preferiti.</Alert>;
       } else {
         <Alert variant="danger">errore durante l'aggiunta</Alert>;
       }
@@ -307,6 +308,8 @@ const FilmDetails = () => {
       </Modal>
 
       <Closedemo></Closedemo>
+
+
     </>
   );
 };

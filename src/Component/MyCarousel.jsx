@@ -1,29 +1,21 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
-import { useSelector } from 'react-redux';
-import { addToFavourites, getCategories, getUserData, setCategories, setFilm } from '../Store';
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { addToFavourites, setCategories, setFilm } from '../Store';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch } from "react-redux";
-import Spinner from 'react-bootstrap/Spinner';
-import IntersectionObserverComponent from './IntersectionObserverComponent';
-import freccia from "../image/freccia.gif"
+import OneCarousel from './OneCarousel';
+
 const MyCarousel = () => {
-  
   const location = useLocation();
   const fristaccess = new URLSearchParams(location.search).get("fristaccess");
 fristaccess&&console.log("primo accesso!")
-  const carouselRefs = useRef([]);
-
   const [filter, setfilter] = useState([]);
     const Dispatch=useDispatch()
-  const carouselRef = useRef(null);
-  const user = useSelector(getUserData);
   const [allfilm, setAllfilm] = useState([]);
   const [favourites, setFavourites] = useState([]);
   console.log("favoriti",favourites);
-
   const [loading, setloading]= useState(false)
   const navigation = useNavigate();
+  const favouritesCategory = { Preferiti: favourites };
   const GetAllFilms = async () => {
     try {
       const response = await fetch("http://localhost:8080/api/film/all", {
@@ -75,7 +67,8 @@ Dispatch(setCategories(filmsByCategory));
       if (responsefavourites.ok) {
         const data = await responsefavourites.json();
         console.log(" ui",data);
-        setFavourites(data); // Assegna i dati a favourites
+        setFavourites(data);
+        console.log("stai attento",favourites) // Assegna i dati a favourites
         Dispatch(addToFavourites(data));
       } else {
         console.log("Error films not found");
@@ -87,25 +80,7 @@ Dispatch(setCategories(filmsByCategory));
     }
   };
 
-  const handleScrollLeft = (index) => {
-    const carouselElement = carouselRefs.current[index];
-    if (carouselElement) {
-      carouselElement.scrollBy({
-        left: -500,
-        behavior: 'smooth',
-      });
-    }
-  };
 
-  const handleScrollRight = (index) => {
-    const carouselElement = carouselRefs.current[index];
-    if (carouselElement) {
-      carouselElement.scrollBy({
-        left: 500,
-        behavior: 'smooth',
-      });
-    }
-  };
 
   useEffect(() => {
     GetAllFilms();
@@ -132,69 +107,28 @@ Dispatch(setCategories(filmsByCategory));
   
   return (
     <>
-
-
-      {Object.entries(filter).map(([category, films],index) => (
-          
-        <div key={category} className='mb-5 '>
-            <h4 className='titlecategory'>{category.charAt(0).toUpperCase()+ category.slice(1).toLowerCase()}</h4>
-      
-            <button className="carousel-button carousel-button-left" onClick={() => handleScrollLeft(index)}>
-              <FaAngleLeft className="text-light iconsize" />
-            </button>
-            
-            <button className="carousel-button carousel-button-right"  onClick={() => handleScrollRight(index)}>
-              <FaAngleRight className="text-light iconsize" />
-            </button>
-
-          <div className="d-flex Carousel" ref={(ref) => (carouselRefs.current[index] = ref)}>
-            {films?.map((film) => (
-              <div key={film.id} className="carouselitem">
-            {fristaccess&&<img src={freccia} className='rowfristaccess'></img>}
-                <img
-                  src={film.poster_url}
-                  alt={film.title}
-                  width={100}
-                  onClick={() => handleFilmClick(film)}
-                />
-                {/* Aggiungi elementi */}
-              </div>
-            ))}
-          </div>
-        </div>
-      ))}
-      {favourites.length > 0 && <><h4 className='titlecategory'>i tuoi preferiti</h4>
-      
-
-
-      <button className="carousel-button carousel-button-left" onClick={() => handleScrollLeft()}>
-              <FaAngleLeft className="text-light iconsize" />
-            </button>
-            
-            <button className="carousel-button carousel-button-right"  onClick={() => handleScrollRight()}>
-              <FaAngleRight className="text-light iconsize" />
-            </button>
-<div className="d-flex Carousel">
-  <button className="carousel-button carousel-button-left" onClick={() => handleScrollLeft()}>
-    <FaAngleLeft className="text-light iconsize" />
-  </button>
-
-  {favourites?.map((film) => (
-    <div key={film.id} className="carouselitem">
-      <img
-        src={film.movie.poster_url}
-        alt={film.movie.title}
-        width={100}
-        onClick={() =>  handleFilmClickfavorite(film)
-}
+    {Object.entries(filter).map(([category, films], index) => (
+      <OneCarousel
+        key={category}
+        title={category}
+        films={films}
+        fristaccess={fristaccess}
+        onFilmClick={handleFilmClick}
       />
-    </div>
-  ))}
-</div>
- </>}
-      
-    </>
-    
+    ))}
+
+{Array.isArray(favourites) && favourites.length > 0 && (
+            <OneCarousel
+            key={favourites}
+            title={"I tuoi preferiti"}
+            films={favourites}
+            fristaccess={fristaccess}
+            onFilmClick={handleFilmClickfavorite}
+          />
+      )}
+
+  </>
+        
   );
 };
 

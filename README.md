@@ -3,7 +3,6 @@
 </h1>
 
 <p align="center">
-  [Clicca qui per visualizzare il video](https://drive.google.com/file/d/1B0O3VJVEyoymvqSm0vQJfxABiFl0hALn/view?usp=drive_link)
     <img src="https://drive.google.com/uc?export=download&id=1PWvR2izCi-R6qTdDPowJ9fdNkwXyJnId">
   </a>
 </p>

@@ -1,4 +1,6 @@
-# StreamThron
+<H1 align="center">
+  STREAMTHRON
+</H1>
 
 <p align="center">
   <img src="link_al_tuo_logo_se_hai_uno.png" alt="StreamThron Logo">

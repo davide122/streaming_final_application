@@ -1,6 +1,8 @@
 # StreamThron
 
-![StreamThron Logo](link_al_tuo_logo_se_hai_uno.png)
+<p align="center">
+  <img src="link_al_tuo_logo_se_hai_uno.png" alt="StreamThron Logo">
+</p>
 
 StreamThron è un innovativo sito di streaming che ti permette di goderti una vasta selezione di film in modo facile e veloce. Con StreamThron, potrai registrarti, accedere e vivere un'esperienza di streaming unica, arricchita da funzionalità extra che renderanno il tuo tempo di visione ancora più coinvolgente.
 

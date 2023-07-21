@@ -5,6 +5,7 @@ import { getUserData } from "../Store";
 import MyCarousel from "./MyCarousel";
 import MyHeroVideo from "./MyHeroVideo";
 import Closedemo from "./closedemo"
+import MyFooter from "./MyFooter";
 const MyHomePage = () =>{
     const user = useSelector(getUserData)
     console.log(user)
@@ -15,6 +16,7 @@ const MyHomePage = () =>{
        <MyHeroVideo></MyHeroVideo>
        <MyCarousel></MyCarousel>
 <Closedemo></Closedemo>
+<MyFooter></MyFooter>
 </div>
  
 

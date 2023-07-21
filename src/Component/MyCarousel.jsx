@@ -165,6 +165,15 @@ Dispatch(setCategories(filmsByCategory));
       ))}
       {favourites.length > 0 && <><h4 className='titlecategory'>i tuoi preferiti</h4>
       
+
+
+      <button className="carousel-button carousel-button-left" onClick={() => handleScrollLeft()}>
+              <FaAngleLeft className="text-light iconsize" />
+            </button>
+            
+            <button className="carousel-button carousel-button-right"  onClick={() => handleScrollRight()}>
+              <FaAngleRight className="text-light iconsize" />
+            </button>
 <div className="d-flex Carousel">
   <button className="carousel-button carousel-button-left" onClick={() => handleScrollLeft()}>
     <FaAngleLeft className="text-light iconsize" />
@@ -181,10 +190,6 @@ Dispatch(setCategories(filmsByCategory));
       />
     </div>
   ))}
-
-  <button className="carousel-button carousel-button-right" onClick={() => handleScrollRight()}>
-    <FaAngleRight className="text-light iconsize" />
-  </button>
 </div>
  </>}
       

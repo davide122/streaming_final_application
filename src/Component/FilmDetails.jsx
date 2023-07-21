@@ -29,6 +29,7 @@ const FilmDetails = () => {
   const favoriteid = new URLSearchParams(location.search).get("favoriteId");
   const [count, setCount] = useState(0);
   const fristaccess = new URLSearchParams(location.search).get("fristaccess");
+  const actorsString = filmDetails?.actors.join(", ");
   fristaccess && console.log("primo accesso!");
 
   let cosafa = localStorage.getItem("cosa fa?");
@@ -157,7 +158,7 @@ const FilmDetails = () => {
               <div className="w-100 ms-2 details">
                 <div className="png">
                   {filmDetails.text_png_url ? (
-                    <img src={filmDetails?.text_png_url} alt="" className="w-100" />
+                    <img src={filmDetails?.text_png_url} alt="" className="img" />
                   ) : (
                     <h1>{filmDetails?.title}</h1>
                   )}
@@ -172,6 +173,7 @@ const FilmDetails = () => {
                   <p className="me-3">
                     {filmDetails?.anno}-{filmDetails?.durata} min
                   </p>
+               
                   {filmDetails.generi === "HORROR" && (
                     <img
                       data-tooltip={"Film vietato ai minori di 14 anni"}
@@ -190,6 +192,9 @@ const FilmDetails = () => {
                     {filmDetails?.rating * 10}%
                   </button>
                 </div>
+                <p>
+              {actorsString}
+                  </p>
 
                 <p className="">{filmDetails?.description}...</p>
                 {fristaccess && <img src={freccia} className="rowfristaccessdetails" alt="" />}

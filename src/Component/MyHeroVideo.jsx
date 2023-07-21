@@ -88,7 +88,7 @@ const [filmtimeout, setfilmtimeout] = useState(false);
     <div className="video-container">
     <video src={`https://drive.google.com/uc?export=download&id=${trailerUrl}`} autoPlay muted loop  poster={randomFilm?.poster_url} ref={videoRef}/>
     <div className={`infovideohome png d-flex flex-column text-light ${isTextScaled ? 'scaled' : ''}`}>
-      <img src={randomFilm?.text_png_url} alt="" className="img-fluid" onClick={()=>{handleclick(randomFilm)}}/>
+      <img src={randomFilm?.text_png_url} alt="" className="img" onClick={()=>{handleclick(randomFilm)}}/>
       <p>{randomFilm?.description.slice(0,170)}...</p>
       <div className='d-flex justify-content-center align-items-center'>
 

@@ -71,6 +71,7 @@ canvas{
 }
 .img{
   width: 100%;
+  height: 100%;
   cursor: pointer;
 }
 .Carousel{
@@ -549,4 +550,18 @@ color: white;
   bottom: 0;
   z-index: 1999999999;
 color: white !important;
+}
+
+.myfooter{
+  height: 70px;
+  background-color: rgba(29, 28, 28, 0.644) !important;
+  color: white !important;
+}
+.a{
+  height: 35px !important;
+  color: rgb(255, 255, 255) !important;
+  background-color: #292828b6 !important;
+}
+.icon-link {
+  color: #ffffff; /* Colore desiderato per le icone (in questo esempio: nero) */
 }

@@ -3,10 +3,11 @@
 </h1>
 
 <p align="center">
-  <a href="https://drive.google.com/uc?export=download&id=1IXBSVTjkN_bHOXyD89KLSpCNb_2T5_u6">
-    <img src="https://drive.google.com/uc?export=download&id=1IXBSVTjkN_bHOXyD89KLSpCNb_2T5_u6">
+  <a href="https://drive.google.com/uc?export=download&id=1PWvR2izCi-R6qTdDPowJ9fdNkwXyJnId">
+    <img src="https://drive.google.com/uc?export=download&id=1PWvR2izCi-R6qTdDPowJ9fdNkwXyJnId">
   </a>
 </p>
+
 
 StreamThron è un innovativo sito di streaming che ti permette di goderti una vasta selezione di film in modo facile e veloce. Con StreamThron, potrai registrarti, accedere e vivere un'esperienza di streaming unica, arricchita da funzionalità extra che renderanno il tuo tempo di visione ancora più coinvolgente.
 

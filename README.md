@@ -1,6 +1,6 @@
-<H1 align="center">
-  <font color="red">Streamthron</font>
-</H1>
+<h1 align="center" style="color: red;">
+  StreamThron
+</h1>
 
 <p align="center">
   <img src="link_al_tuo_logo_se_hai_uno.png" alt="StreamThron Logo">
@@ -10,15 +10,15 @@ StreamThron è un innovativo sito di streaming che ti permette di goderti una va
 
 ## Caratteristiche principali
 
-1. **Ampia selezione di film**: StreamThron ti offre un catalogo diversificato di film tra cui scegliere. Ogni film sarà accompagnato da una descrizione dettagliata e un breve trailer per aiutarti a prendere una decisione informata sulla tua prossima visione.
+1. <strong>Ampia selezione di film</strong>: StreamThron ti offre un catalogo diversificato di film tra cui scegliere. Ogni film sarà accompagnato da una descrizione dettagliata e un breve trailer per aiutarti a prendere una decisione informata sulla tua prossima visione.
 
-2. **Registrazione e accesso**: Avrai la possibilità di creare un account personale su StreamThron attraverso un form di registrazione. Una volta registrato, potrai effettuare il login per accedere alla web app e usufruire di tutte le funzionalità offerte.
+2. <strong>Registrazione e accesso</strong>: Avrai la possibilità di creare un account personale su StreamThron attraverso un form di registrazione. Una volta registrato, potrai effettuare il login per accedere alla web app e usufruire di tutte le funzionalità offerte.
 
 ### Feature Extra
 
-3. **Controllo dei film tramite Machine Learning**: StreamThron integra un'innovativa funzionalità basata sull'uso di machine learning. Attraverso uno script, potrai sfruttare la fotocamera del tuo PC o smartphone per controllare alcune funzioni come la riproduzione e la pausa dei film. La tua webcam riconoscerà le gesture che effettui e le tradurrà in comandi per il player di streaming.
+3. <strong>Controllo dei film tramite Machine Learning</strong>: StreamThron integra un'innovativa funzionalità basata sull'uso di machine learning. Attraverso uno script, potrai sfruttare la fotocamera del tuo PC o smartphone per controllare alcune funzioni come la riproduzione e la pausa dei film. La tua webcam riconoscerà le gesture che effettui e le tradurrà in comandi per il player di streaming.
 
-4. **Quiz personalizzato**: Per aiutarti a scoprire il film che fa più al caso tuo, StreamThron ti offre un divertente quiz interattivo. Rispondi a una serie di domande e il sistema ti suggerirà il film più adatto ai tuoi gusti personali. Potrai quindi accedere direttamente al film consigliato e iniziare a guardarlo immediatamente.
+4. <strong>Quiz personalizzato</strong>: Per aiutarti a scoprire il film che fa più al caso tuo, StreamThron ti offre un divertente quiz interattivo. Rispondi a una serie di domande e il sistema ti suggerirà il film più adatto ai tuoi gusti personali. Potrai quindi accedere direttamente al film consigliato e iniziare a guardarlo immediatamente.
 
 ## Tecnologie utilizzate
 

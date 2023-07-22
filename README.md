@@ -1,70 +1,50 @@
-# Getting Started with Create React App
+<h1 align="center">
+  StreamThron
+</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center">
+  <img src="https://drive.google.com/uc?export=download&id=1PWvR2izCi-R6qTdDPowJ9fdNkwXyJnId">
+</p>
 
-## Available Scripts
+StreamThron è un innovativo sito di streaming che ti permette di goderti una vasta selezione di film in modo facile e veloce. Con StreamThron, potrai registrarti, accedere e vivere un'esperienza di streaming unica, arricchita da funzionalità extra che renderanno il tuo tempo di visione ancora più coinvolgente.
 
-In the project directory, you can run:
+## Caratteristiche principali
 
-### `npm start`
+1. 🎥 <span class="text-blue">Ampia selezione di film</span>: StreamThron ti offre un catalogo diversificato di film tra cui scegliere. Ogni film sarà accompagnato da una descrizione dettagliata e un breve trailer per aiutarti a prendere una decisione informata sulla tua prossima visione.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+2. 👤 <span class="text-blue">Registrazione e accesso</span>: Avrai la possibilità di creare un account personale su StreamThron attraverso un form di registrazione. Una volta registrato, potrai effettuare il login per accedere alla web app e usufruire di tutte le funzionalità offerte.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+3. 🤖 <span class="text-blue">Controllo dei film tramite Machine Learning</span>: StreamThron integra un'innovativa funzionalità basata sull'uso di machine learning. Attraverso uno script, potrai sfruttare la fotocamera del tuo PC o smartphone per controllare alcune funzioni come la riproduzione e la pausa dei film. La tua webcam riconoscerà le gesture che effettui e le tradurrà in comandi per il player di streaming.
 
-### `npm test`
+4. 🎯 <span class="text-blue">Quiz personalizzato</span>: Per aiutarti a scoprire il film che fa più al caso tuo, StreamThron ti offre un divertente quiz interattivo. Rispondi a una serie di domande e il sistema ti suggerirà il film più adatto ai tuoi gusti personali. Potrai quindi accedere direttamente al film consigliato e iniziare a guardarlo immediatamente.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Tecnologie utilizzate
+<P align="center">
+### Front-end
 
-### `npm run build`
+- React
+- React-Redux
+- Toolkit
+- React-Router-DOM
+- React-Bootstrap (Bootstrap per il design e la struttura dell'interfaccia utente)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Back-end
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Java
+- Spring Boot
+- Spring Security jwt
+- Spring Data JPA (per l'interazione con il database)
+</p>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Come iniziare
+1. Clona il repository: `git clone https://github.com/tuo_nome_utente/streamthron.git`
+2. Naviga nella directory del progetto: `cd streamthron`
+3. Avvia il server back-end (assumi che sia già configurato e pronto per l'uso)`https://github.com/davide122/StreamThron_api`
+4. Avvia l'applicazione front-end: `npm start`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Contributi
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Le collaborazioni al progetto sono benvenute! Se vuoi contribuire, fai una fork del repository, crea un branch per le tue modifiche e invia una pull request.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+*Questo progetto è stato creato come parte del mio lavoro (Per il completamento del mio corso formativo e per verificare le competenze imparate negli ultimi 6 mesi. EPICODE).*

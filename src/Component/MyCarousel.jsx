@@ -15,7 +15,7 @@ fristaccess&&console.log("primo accesso!")
   console.log("favoriti",favourites);
   const [loading, setloading]= useState(false)
   const navigation = useNavigate();
-  const favouritesCategory = { Preferiti: favourites };
+  
   const GetAllFilms = async () => {
     try {
       const response = await fetch("http://localhost:8080/api/film/all", {

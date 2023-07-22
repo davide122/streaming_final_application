@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { getFilm } from '../Store';
-
+import sfondo from "../image/fasi-cinema.jpg"
 function AddToFavoritesForm() {
  // Stato per memorizzare l'ID del film da rimuovere
   const [removeId, setRemoveId] = useState('');
@@ -129,12 +127,14 @@ setFilmData()
   };
 
   return (
-    <div className="container-fluid">
+    <> 
+    <img src={sfondo} className="sfondo" alt="" />
+     <div className="container-fluid z100">
 
     <div className='row'>
-<div className="col col-4">
+<div className="col col-6">
 
-    <form onSubmit={handleSubmit} className="text-center border">
+    <form onSubmit={handleSubmit} className="text-center ">
       <h1 className='text-light'>Aggiungi film</h1>
       <div className="my-3">
         
@@ -288,14 +288,14 @@ setFilmData()
       </div>
 
       <div className="text-center">
-        <button type="submit" className="btn btn-light rounded-1">
+        <button type="submit" className="quizbutton w-50 p-2 mb-2">
           Aggiungi  film
         </button>
       </div>
     </form>
 </div>
-<div className="col col-4">
-          <form onSubmit={handleRemove} className="container-login text-center border">
+<div className="col col-6">
+          <form onSubmit={handleRemove} className="text-center ">
             <h1 className='text-light'>Elimina film</h1>
             <div className="mb-5">
               <label htmlFor="filmId" className="form-label">
@@ -332,6 +332,8 @@ setFilmData()
 </div>
     </div>
     </div>
+    </>
+  
   );
 }
 

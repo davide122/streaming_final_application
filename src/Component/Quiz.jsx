@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getFilm, setFilm } from "../Store";
 import MyNav from "./MyNav";
 import { useNavigate } from "react-router-dom";
-
+import sfondo from "../image/fasi-cinema.jpg"
 const Quiz = () => {
   const [risposte, setRisposte] = useState([]);
   const [risultato, setRisultato] = useState("");
@@ -289,7 +289,8 @@ const Quiz = () => {
 
   return (
     <>  <MyNav></MyNav>
-    <div className="d-flex justify-content-center align-items-center flex-column text-center text-light h-100 my-5">
+    <img src={sfondo} className="sfondo" alt="" />
+    <div className="d-flex justify-content-center align-items-center flex-column text-center text-light h-100 my-5 z100">
 
 
       {risultato ? (
@@ -319,29 +320,29 @@ const Quiz = () => {
           {page === 1 &&   <div className=" ">
           <h1>Quiz sui film</h1>
             <h2>Che tipo di film ti piacciono?</h2>
-            <div className="">
-            <button className="mybutton mx-2 my-2" onClick={() => aggiungiRisposta("commedia", 1)}>
+            <div className="my-5">
+            <button className="quizbutton mx-2 my-2" onClick={() => aggiungiRisposta("commedia", 1)}>
               Commedia
             </button>
-            <button className="mybutton mx-2 my-2" onClick={() => aggiungiRisposta("horror", 1)}>
+            <button className="quizbutton mx-2 my-2" onClick={() => aggiungiRisposta("horror", 1)}>
               Horror
             </button>
-            <button className="mybutton mx-2 my-2" onClick={() => aggiungiRisposta("azione", 1)}>
+            <button className="quizbutton mx-2 my-2" onClick={() => aggiungiRisposta("azione", 1)}>
               Azione
             </button>
-            <button className="mybutton mx-2 my-2" onClick={() => aggiungiRisposta("thriller", 1)}>
+            <button className="quizbutton mx-2 my-2" onClick={() => aggiungiRisposta("thriller", 1)}>
               Thriller
             </button>
-            <button className="mybutton mx-2 my-2" onClick={() => aggiungiRisposta("dramma", 1)}>
+            <button className="quizbutton mx-2 my-2" onClick={() => aggiungiRisposta("dramma", 1)}>
               Dramma
             </button>
-            <button className="mybutton mx-2 my-2" onClick={() => aggiungiRisposta("romantico", 1)}>
+            <button className="quizbutton mx-2 my-2" onClick={() => aggiungiRisposta("romantico", 1)}>
               Romantico
             </button>
-            <button className="mybutton mx-2 my-2" onClick={() => aggiungiRisposta("fantasy", 1)}>
+            <button className="quizbutton mx-2 my-2" onClick={() => aggiungiRisposta("fantasy", 1)}>
               Fantasy
             </button>
-            <button className="mybutton mx-2 my-2" onClick={() => aggiungiRisposta("adventure", 1)}>
+            <button className="quizbutton mx-2 my-2" onClick={() => aggiungiRisposta("adventure", 1)}>
               Adventure
             </button>
 
@@ -354,25 +355,28 @@ const Quiz = () => {
 
       {page === 2 &&   <div className="my-2">
             <h2>Preferisci film recenti o classici?</h2>
-            <button className="mybutton mx-2 my-2" onClick={() => aggiungiRisposta("recenti", 1)}>
+            <div className="my-5">
+                <button className="quizbutton mx-2 my-2" onClick={() => aggiungiRisposta("recenti", 1)}>
               Recenti
             </button>
-            <button className="mybutton mx-2 my-2" onClick={() => aggiungiRisposta("classici", 1)}>
+            <button className="quizbutton mx-2 my-2" onClick={() => aggiungiRisposta("classici", 1)}>
               Classici
             </button>
+            </div>
+          
           </div>}
         
          {page === 3 &&    <div>
             <h2>Ti piacciono i film con durata più lunga o corta?</h2>
-            <button className="mybutton mx-2 my-2" onClick={() => aggiungiRisposta("lunghi", 1)}>
+            <button className="quizbutton mx-2 my-2" onClick={() => aggiungiRisposta("lunghi", 1)}>
               Lunghi
             </button>
-            <button className="mybutton mx-2 my-2" onClick={() => aggiungiRisposta("corti", 1)}>
+            <button className="quizbutton mx-2 my-2" onClick={() => aggiungiRisposta("corti", 1)}>
               Corti
             </button>
           </div>}
        
-{page === 4 &&  <button className="mybutton mx-2 my-2" onClick={calcolaRisultato}>
+{page === 4 &&  <button className="quizbutton mx-2 my-2" onClick={calcolaRisultato}>
             Mostra risultato
           </button>}
         </div>

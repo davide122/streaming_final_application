@@ -4,17 +4,14 @@ import Button from 'react-bootstrap/Button';
 import palmo from "../image/palmo-removebg-preview.png";
 import pollicesu from "../image/pollicesu.png";
 import angleback from "../image/Aggiungi_un_intestazione__1_-removebg-preview.png";
+import sfondo from "../image/fasi-cinema.jpg"
 import { useNavigate } from "react-router-dom";
 const Info = () => {
   const [Count, setCount] = useState(0);
-  const [show, setShow] = useState(true);
-
   const [pausa, setpausa] = useState(false);
   const [attiva, setattiva] = useState(false);
   const [page, setPage] = useState(1);
-
   const navigation = useNavigate();
-  
   
   
   useEffect(() => {
@@ -38,22 +35,22 @@ const Info = () => {
 setattiva(true);
   }
 
-  const finalbutton = () =>{
-    
-  }
-
   return (
-    <div className="d-flex justify-content-center align-items-center flex-column vh-100 h-100 mx-5">
+    <> 
+    
+<img src={sfondo} className="sfondo" alt="" />
+    
+    <div className="d-flex justify-content-center align-items-center flex-column vh-100 h-100 mx-5 z100">
       {page === 1 && (
         <>
-          <div className="text-center border border-light mx-2 my-1 p-5">
+          <div className="text-center  mx-2 my-1 p-5">
             <div className="mx-2 text-light rounded-3">
               <h1 className="text-center my-3">
                Ciao, sai che in Streamthron puoi gestire i tuoi film con dei semplici gesti? provalo!
               </h1>
               
             </div>
-            <button className="text-center  mybutton p-2" onClick={() => setPage(2)}>
+            <button className="text-center  quizbutton p-2 my-5" onClick={() => setPage(2)}>
            Demo
           </button>
           </div>
@@ -74,7 +71,7 @@ setattiva(true);
             {pausa && (
               <>
                 <h3 className="text-success">Bravo, hai capito come funziona, andiamo avanti!</h3>
-                <button className="mybutton bg-success w-100"onClick={() => setPage(3)}>Clicca qui per provare la funzione attiva film</button>
+                <button className="quizbutton bg-success w-100"onClick={() => setPage(3)}>Clicca qui per provare la funzione attiva film</button>
               </>
             )}
           </div>
@@ -95,13 +92,14 @@ setattiva(true);
       {attiva && (
         <>
           <h1>Bravo, hai capito come funziona, andiamo avanti!</h1>
-          <button className="mybutton w-100 bg-success" onClick={() => navigation("/home?fristaccess=true")}>Clicca qui per provare un film </button>
+          <button className="quizbutton w-100 bg-success" onClick={() => navigation("/home?fristaccess=true")}>Clicca qui per provare un film </button>
         </>
       )}
     </div>
   </div>
 )}
-    </div>
+    </div></>
+   
   );
 };
 

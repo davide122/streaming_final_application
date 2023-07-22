@@ -7,7 +7,6 @@ const RegisterPage = () =>{
   const navigation = useNavigate();
     const [name, setName] = useState("");
     const [lastName, setLastName] = useState("");
-  
     const [username, setUserName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");

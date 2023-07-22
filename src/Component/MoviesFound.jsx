@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCategories, setFilm } from "../Store";
 import { useLocation, useNavigate } from "react-router-dom";
 import MyNav from "./MyNav";
-
+import sfondo from "../image/fasi-cinema.jpg"
 const MoviesFound = () =>{
   const Dispatch=useDispatch()
     const categories = useSelector(getCategories);
@@ -15,7 +15,8 @@ const MoviesFound = () =>{
     return (
       <>
       <MyNav className="position-relative"></MyNav>
-        <div className="container d-flex justify-content-center flex-column align-items-center">
+      <img src={sfondo} className="sfondo" alt="" />
+        <div className="container d-flex justify-content-center flex-column align-items-center z100">
           <h1 className="titlecategory top-0 mt-5">{category}</h1>
           <div className="row my-5">
             {movies.map((film) => (

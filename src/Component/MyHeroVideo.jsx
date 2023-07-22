@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getFilm, setFilm } from '../Store';
 import { useEffect, useRef, useState } from 'react';
 import { GiSpeakerOff, GiSpeaker } from "react-icons/gi";
-import Spinner from 'react-bootstrap/Spinner';
 import { useNavigate } from 'react-router-dom';
 
 

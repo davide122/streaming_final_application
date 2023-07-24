@@ -15,41 +15,45 @@ import MoviesFound from './Component/MoviesFound';
 import Info from './Component/Infopage';
 import { getIsAdmin } from './Store';
 import { useSelector } from 'react-redux';
-
-
-
-
-
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 function App() {
-  const [islogged, setislogged]= useState(false);
+  const [islogged, setislogged] = useState(false);
   const isAdmin = useSelector(getIsAdmin);
   // Funzione per impostare lo stato del login
- 
 
   // Funzione per impostare lo stato del logout
-  
+
   return (
+    <BrowserRouter>
+      {/* Altri componenti possono essere qui... */}
+      <TransitionGroup>
+        <Routes>
+          <Route path="/" element={<LoginPage />} />
+          <Route path="/home" element={<MyHomePageWithTransition />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="*" element={<PageNotFound />} />
+          <Route path="details/:id" element={<FilmDetails />} />
+          {isAdmin && <Route path="backoffice" element={<BackOffice />} />}
+          <Route path="/quiz" element={<Quiz />} />
+          <Route path="/moviesfound" element={<MoviesFound />} />
+          <Route path="/info" element={<Info />} />
+        </Routes>
+      </TransitionGroup>
+    </BrowserRouter>
+  );
+}
 
-<BrowserRouter>
-
-
-<Routes>
-<Route path='/' element={<LoginPage></LoginPage>}></Route>
-
-
-<Route path="/home" element={<MyHomePage></MyHomePage>}></Route>
-
-<Route path='/register' element={<RegisterPage></RegisterPage>}></Route>
-<Route path='*' element={<PageNotFound></PageNotFound>}></Route>
-<Route path='details/:id' element={<FilmDetails/>}></Route>
- {isAdmin&&<Route path='backoffice' element={<BackOffice></BackOffice>}></Route>} 
-
-<Route path='/quiz' element={<Quiz></Quiz>}></Route>
-<Route path="/moviesfound" element={<MoviesFound></MoviesFound>}></Route>
-<Route path = "/info" element={<Info></Info>}></Route>
-</Routes>
-</BrowserRouter>
+function MyHomePageWithTransition() {
+  return (
+    <CSSTransition
+      in={true} // Cambia questo valore in base alla logica in cui desideri mostrare o nascondere il componente
+      classNames="fade"
+      timeout={500}
+      unmountOnExit
+    >
+      <MyHomePage />
+    </CSSTransition>
   );
 }
 

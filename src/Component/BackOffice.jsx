@@ -116,6 +116,7 @@ setFilmData()
       if (response.ok) {
         // Successo, puoi fare qualcosa (ad esempio, visualizzare un messaggio di successo)
         console.log('Film aggiunto ai preferiti con successo');
+        setFilmData()
       } else {
         // Errore nella richiesta, gestiscilo adeguatamente
         console.log('Errore durante l\'aggiunta del film ai preferiti');

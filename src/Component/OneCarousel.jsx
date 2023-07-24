@@ -19,7 +19,7 @@ const OneCarousel = ({ title, films, fristaccess, onFilmClick }) => {
   };
 
   return (
-    <div className='mb-5'>
+    <div className='mb-4'>
     <h4 className='titlecategory'>{title.charAt(0).toUpperCase() + title.slice(1).toLowerCase()}</h4>
 
     <button className='carousel-button carousel-button-left' onClick={handleScrollLeft}>

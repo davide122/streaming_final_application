@@ -11,6 +11,7 @@ import freccia from "../image/freccia.gif";
 import MyNav from "./MyNav";
 import Closedemo from "./closedemo";
 import OneCarousel from "./OneCarousel";
+import { CSSTransition } from "react-transition-group";
 
 const FilmDetails = () => {
   const modalVideoRef = useRef(null);
@@ -147,8 +148,15 @@ const FilmDetails = () => {
   const posterUrl = isVideoPlaying ? "" : filmDetails?.poster_url;
 
   return (
-    <>
-      <div className="position-relative">
+   
+       <CSSTransition
+          in={true} // Cambia questo valore in base alla logica in cui desideri mostrare o nascondere il componente
+          classNames="fade-exit"
+          timeout={500}
+          unmountOnExit
+        >
+<>
+  <div className="position-relative">
         <MyNav />
       </div>
 
@@ -309,8 +317,13 @@ const FilmDetails = () => {
 
       <Closedemo></Closedemo>
 
+</>
+          
+        </CSSTransition>
+    
 
-    </>
+
+    
   );
 };
 

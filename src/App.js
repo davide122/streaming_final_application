@@ -26,7 +26,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      {/* Altri componenti possono essere qui... */}
+<MyNav></MyNav>
       <TransitionGroup>
         <Routes>
           <Route path="/" element={<LoginPage />} />

@@ -288,7 +288,7 @@ const Quiz = () => {
   };
 
   return (
-    <>  <MyNav></MyNav>
+    <> 
     <img src={sfondo} className="sfondo" alt="" />
     <div className="d-flex justify-content-center align-items-center flex-column text-center text-light h-100 my-5 z100">
 

@@ -18,7 +18,7 @@ const MyHomePage = () =>{
           unmountOnExit
         >
           <div>
-            <MyNav />
+       
             <MyHeroVideo />
             <MyCarousel />
             <Closedemo />

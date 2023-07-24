@@ -14,7 +14,7 @@ const MoviesFound = () =>{
   
     return (
       <>
-      <MyNav className="position-relative z100"></MyNav>
+  
       <img src={sfondo} className="sfondo" alt="" />
         <div className="container d-flex justify-content-center flex-column align-items-center z100">
           <h1 className="titlecategory top-0 mt-5">{category}</h1>

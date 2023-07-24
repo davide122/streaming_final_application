@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet";
 
 import { Link,Navigate, useNavigate   } from "react-router-dom";
 const RegisterPage = () =>{
+  
   const navigation = useNavigate();
     const [name, setName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -12,6 +13,7 @@ const RegisterPage = () =>{
     const [password, setPassword] = useState("");
     const [registrationCompleted, setRegistrationCompleted] = useState(false); 
     const [showPassword, setShowPassword] = useState(false);
+    
     const handleNameChange = (event) => {
         setName(event.target.value);
       };

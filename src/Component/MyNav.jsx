@@ -12,6 +12,8 @@ import { Alert } from "react-bootstrap";
 const MyNav = () => {
   const location = useLocation();
   const dettagli = new URLSearchParams(location.search).get("dettagli");
+  const currentPagePath = location.pathname;
+
   const Dispatch = useDispatch();
   const allfilm = useSelector(getFilm);
   const categorie = useSelector(getCategories);
@@ -119,8 +121,7 @@ admin()
         </Offcanvas.Body>
     
       </Offcanvas>
-
-      <Navbar expand="lg" className="nav d-flex">
+{currentPagePath ==="/" || currentPagePath==="/register" ? (null): (     <Navbar expand="lg" className="nav d-flex z100">
         <Container fluid className="mx-5">
           <Navbar.Brand href="" className="text-light "onClick={() => {
                 navigation("/home");
@@ -205,7 +206,8 @@ admin()
             )}
           </Navbar.Collapse>
         </Container>
-      </Navbar>
+      </Navbar>)}
+ 
     </>
   );
 };

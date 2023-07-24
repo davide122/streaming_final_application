@@ -156,10 +156,6 @@ const FilmDetails = () => {
           unmountOnExit
         >
 <>
-  <div className="position-relative">
-        <MyNav />
-      </div>
-
       <div className="DetailsContainer">
         <div className="container-fluid">
           <div className="row textonvideo">
@@ -263,7 +259,7 @@ const FilmDetails = () => {
         dialogClassName="modal-90w "
         aria-labelledby="example-custom-modal-styling-title"
         fullscreen
-        className="carousel-modal"
+        className="modal"
       >
         {cosafa === "play" && <h2 className="position-absolute top-0 textonvideo">👍Avvia</h2>}
         {cosafa === "pausa" && <h2 className="position-absolute top-0 textonvideo">✋Pausa</h2>}
